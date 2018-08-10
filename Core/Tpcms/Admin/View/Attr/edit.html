@@ -1,0 +1,90 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+	<div class="nav">
+	<div class="return"><a href="{:U('Type/index')}">返回类型管理</a></div>
+    <ul class="cc">
+        <li><a href="{:U('Attr/index',array('typeid'=>$_GET['typeid']))}">属性管理</a></li>
+        <li  class="current"><a href="javascript:;">编辑属性</a></li>
+        
+      </ul>
+	</div>
+    <div class="h_a">类型“{$typename}”属性</div>
+  	<form action="{:U('Attr/edit')}" method="post" class="J_ajaxForm" >
+    <div class="table_full">
+      <table width="100%"  class="table_form">
+        <tr>
+        <th width="120">
+        	<font color='red'>*</font>
+        	属性名称：
+        </th>
+        <td class="y-bg"><input type="text" class="input" name="attr_name" id="attr_name" size="30" value="{$data.attr_name}" /></td>
+        </tr>
+        <tr>
+          <th>
+          	<font color='red'>*</font>
+          	属性排序：
+          </th>
+          <td class="y-bg"><input type="text" class="input" name="sort" id="sort" size="30" value="{$data.sort}" /></td>
+        </tr>
+        <tr>
+          <th>是否有图集</th>
+          <td class="y-bg">
+          		<label>
+          			<input name='is_pic' type="radio" value="1" <if condition='$data["is_pic"]'>checked="checked"</if>> 是</label>
+           		 &nbsp;
+            	<label>
+                <input name='is_pic' type="radio" value="0" <if condition='!$data["is_pic"]'>checked="checked"</if>> 否</label>
+          </td>
+        </tr>
+        <tr>
+			<th class="hd-w100">
+				属性值
+			</th>
+			<td>
+				<table class='attr_value'>
+					<if condition='$data["attr_value"]'>
+					<foreach name='data.attr_value' item='v'>
+						<tr>
+						<td>
+						 	名称：<input type="text" name='attr_value_name[][{$v.attr_value_id}]' class='input' value='{$v.attr_value_name}'/>
+							值：<input type="text" name='attr_value[][{$v.attr_value_id}]' class='input' value='{$v.attr_value}'/>
+							排序：<input type="text" name='attr_value_sort[][{$v.attr_value_id}]' class='input' value='{$v.attr_value_sort}'/>
+							<if condition='!$key'>
+							&nbsp;<span class='hand plus'>[+]</span>
+							<else />
+							&nbsp;<span class='hand minus'>[-]</span>
+							</if></td>
+					</tr>
+					</foreach>
+					<else />
+				
+					<tr>
+						<td>
+						名称：<input type="text" name='attr_value_name[]' class="input"/>
+						值：<input type="text" name='attr_value[]' class="input"/>
+						排序：<input type="text" name='attr_value_sort[]' class="input"/>
+						<span class='hand plus'  >[+]</span>
+						</td>
+					</tr>
+
+					</if>
+
+				</table>
+			</td>
+		</tr>
+      </table>
+    </div>
+    <div class="">
+      <div class="btn_wrap_pd">
+        <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit">编辑</button>
+     	<input type="hidden" name='typeid' value="{$Think.get.typeid}" />
+     	<input type="hidden" name='attr_id' value="{$Think.get.attr_id}" />
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+<script src='__PUBLIC__/js/mod.attr.js'></script>
+</body>
+</html>

@@ -1,0 +1,76 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<style>
+.pop_nav{
+	padding: 0px;
+}
+.pop_nav ul{
+	border-bottom:1px solid #266AAE;
+	padding:0 5px;
+	height:25px;
+	clear:both;
+}
+.pop_nav ul li.current a{
+	border:1px solid #266AAE;
+	border-bottom:0 none;
+	color:#333;
+	font-weight:700;
+	background:#F3F3F3;
+	position:relative;
+	border-radius:2px;
+	margin-bottom:-1px;
+}
+
+</style>
+<div class="wrap J_check_wrap">
+  <div class="nav">
+    <ul class="cc">
+		<li class="current"><a href="javascrip:;">网站设置</a></li>
+		<li ><a href="{:U('Config/add')}">添加配置</a></li>
+		<li ><a href="{:U('Config/update_cache')}">更新缓存</a></li>
+      </ul>
+	</div>
+  <div class="pop_nav">
+    <ul class="J_tabs_nav">
+	  <foreach name="data" item='v' >
+      	<li <if condition="$key eq '基本设置'">class='current'</if>><a href="javascript:;;">{$key}</a></li>
+	  </foreach>
+    </ul>
+  </div>
+  <form method="post" class="J_ajaxForm" action="{:U('Config/edit')}" >
+    <div class="J_tabs_contents">
+    	<foreach name="data"  item='v'>
+	      <div <if condition="$key neq '基本设置'">style='display:none'</if>>
+	        <div class="h_a">{$key}</div>
+	        <div class="table_full">
+	          <table width="100%" class="table_form ">
+
+	           <tbody>
+					<foreach name="v" item='value'>
+						<tr>
+							<th width="120"><input type="text" name="sort[{$value.code}]" value="{$value.sort}" class='input length_2 '/></th>
+							<th width="200">{$value.title} <br>{$value.code}</th>
+							<td align="left">{$value.form}</td>
+				
+						</tr>
+					</foreach>
+				</tbody>
+	          </table>
+	        </div>
+	      </div>
+	  </foreach>
+    
+      
+      </div>
+ 
+    <div class="btn_wrap">
+      <div class="btn_wrap_pd">
+        <button class="btn btn_submit mr10 J_ajax_submit_btn " type="submit">提交</button>
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/mod.content_addtop.js"></script>
+</body>
+</html>

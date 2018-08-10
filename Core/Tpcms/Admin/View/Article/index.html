@@ -1,0 +1,156 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+  <div class="nav">
+    <ul class="cc">
+    <li <if condition="$_GET['verifystate'] eq 2">class="current" </if>><a href="{:U('index',array('category_cid'=>$_GET['category_cid'],'verifystate'=>2))}">{$cat.cname}列表</a></li>
+      <li <if condition="$_GET['verifystate'] eq 1">class="current" </if>><a href="{:U('index',array('category_cid'=>$_GET['category_cid'],'verifystate'=>1))}">待审核文章</a></li>
+    </ul>
+  </div>
+  <div class="mb10">
+		<a href="{:U('Article/add',array('category_cid'=>I('get.category_cid')))}"  class="btn" title="添加内容"><span class="add"></span>添加内容</a>
+       
+   		 <a href="{:U('/'.strtolower($cat['remark'])."_l_".$cat['cid'])}" target="_blank"  class="btn" title="访问该栏目">访问该栏目</a>
+  </div>
+  <div class="h_a">搜索</div>
+  <form method="get" action="{:U('index')}">
+ 
+    <div class="search_type cc mb10">
+      <div class="mb10"> 
+        <span class="mr20">时间：
+        <input type="text" name="start_time" class="input length_2 J_date" value="{$Think.get.start_time}" style="width:80px;" placeholder="选择时间">-<input type="text" class="input length_2 J_date" name="end_time" value="{$Think.get.end_time}" style="width:80px;" placeholder="选择时间">
+        <select class="select_2" name="flag"style="width:70px;">
+          <option value='0' >全部</option>
+          <foreach name='Think.Config.flag' item='v'>
+            <option value="{$v}" <if condition='isset($_GET["flag"]) && $_GET["flag"] eq $v'> selected='selected'</if>>{$v}</option>
+          </foreach>
+       
+        
+        </select>
+        <select class="select_2" name="keytype" style="width:70px;">
+          <option value='article_title'  <if condition='isset($_GET["keytype"]) && $_GET["keytype"] eq "article_title"'> selected='selected'</if> >标题</option>
+          <option value='keywords' <if condition='isset($_GET["keytype"]) && $_GET["keytype"] eq "keywords"'> selected='selected'</if> >关键词</option>
+          <option value='descirption' <if condition='isset($_GET["keytype"]) && $_GET["keytype"] eq "descirption"'> selected='selected'</if>>描述</option>
+          <option value='username'  <if condition='isset($_GET["keytype"]) && $_GET["keytype"] eq "username"'> selected='selected'</if>>用户名</option>
+          <option value='aid'  <if condition='isset($_GET["keytype"]) && $_GET["keytype"] eq "aid"'> selected='selected'</if>>ID</option>
+        </select>
+        关键字：
+        <input type="text" class="input length_2" name="keyword" style="width:200px;" value="{$Think.get.keyword}" placeholder="请输入关键字...">
+          <input type="hidden" value="{$Think.get.category_cid}" name="category_cid">
+          <input type="hidden" value="{$Think.get.verifystate}" name="verifystate">
+          <button class="btn" type="submit">搜索</button>
+        </span>
+      </div>
+    </div>
+  </form>
+  <form class="J_ajaxForm" action="" method="post">
+    <div class="table_list">
+      <table width="100%">
+	        <colgroup>
+	        <col width="16">
+	        <col width="50">
+	        <col width="60">
+	        <col width="">
+          <col width="80">
+	        <col width="80">
+	        <col width="90">
+	        <col width="140">
+	        <col width="120">
+	        </colgroup>
+	        <thead>
+	        <tr>
+	            <td><label><input type="checkbox" class="J_check_all" data-direction="x" data-checklist="J_check_x"></label></td>
+	            <td>排序</td>
+	            <td align="left">ID</td>
+	            <td>标题</td>
+              <td align="center">状态</td>
+	            <td align="center">点击量</td>
+	            <td align="center">发布人</td>
+	            <td align="center"><span>发帖时间</span></td>
+	            <td align="center">管理操作</td>
+	          </tr>
+	        </thead>
+          <if condition='$data'>
+          <volist name='data' id='value'>
+	        <tr>
+	            <td><input type="checkbox" class="J_check" data-yid="J_check_y" data-xid="J_check_x" name="ids[{$value.aid}]" value="{$value.aid}"></td>
+	            <td><input name='sort[{$value.aid}]' class="input mr5"  type='text' size='3' value='{$value.sort}'></td>
+	            <td align="left">{$value.aid}</td>
+	            <td>
+	            	<a href="{:U('/'.strtolower($value['remark'])."_v_".$value['category_cid'].'_'.$value['aid'])}" target="_blank">
+	            		{$value.article_title}
+
+                  <if condition='$value["flag"]'>
+                    [<span style="color:red" >{$value.flag}</span>]
+                  </if>
+	            	</a>
+	            </td>
+              <td align="center"><?php if($value['addtime'] < time()){
+                  echo '正常';
+                }else{
+                  echo '<span style="color:red;" >待发布</span>';
+                  } ?></td>
+	            <td align="center">{$value.click}</td>
+	            <td align="center">{$value.username}</td>
+	            <td align="center">{$value.addtime|format_date=###,0}</td>
+	            <td align="center">
+	             	<a href="{:U('/'.strtolower($value['remark'])."_v_".$value['category_cid'].'_'.$value['aid'])}"  target="_blank">访问</a>
+	             	| 
+	            	<a href="{:U('Article/edit',array('category_cid'=>$value["category_cid"],'aid'=>$value["aid"]))}" >修改</a> 
+	            	| 
+	            	<a href="{:U('Article/del',array('category_cid'=>$value["category_cid"],'aid'=>$value["aid"],'verifystate'=>$value['verifystate']))}" class="J_ajax_del" >删除</a>
+	            </td>
+	        </tr>
+        </volist>
+        <else/>
+        <tr><td colspan="8">没有找到符合条件的记录</td></tr>
+        </if>
+	        
+        </table>
+      	<div class="p10"><div class="pages"> {$page} </div> </div>
+     
+    </div>
+    <div class="btn_wrap">
+      <div class="btn_wrap_pd">
+        <label class="mr20"><input type="checkbox" class="J_check_all" data-direction="y" data-checklist="J_check_y">全选</label>                
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('sort')}">排序</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('check')}">审核</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('cancel_check')}">取消审核</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('batch_delete')}">删除</button>
+      	<button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('operation')}">设置</button>
+      	<button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('cancel_operation')}">取消设置</button>
+      	<select name="opa">
+      		<option value="推荐">推荐</option>
+      		<option value="头条">头条</option>
+      		<option value="图文">图文</option>
+      	</select>
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+
+<script>
+
+
+function view_comment(obj) {
+	Wind.use('artDialog','iframeTools', function () {
+         art.dialog.open($(obj).attr("data-url"), {
+			close:function(){
+				$(obj).focus();
+			},
+            title: $(obj).attr("data-title"),
+			width:"800px",
+            height: '520px',
+			id:"view_comment",
+            lock: true,
+            background:"#CCCCCC",
+            opacity:0
+        });
+    });
+}
+
+
+</script>
+</body>
+</html>

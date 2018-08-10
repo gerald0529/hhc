@@ -1,0 +1,68 @@
+<div class="wrap J_check_wrap">
+  <div class="nav">
+    <ul class="cc">
+         <li <if condition='!isset($_GET["verifystate"]) || $_GET["verifystate"] eq 2'>class="current"</if>>
+          <a href="{:U('index',array('name'=>'Link','verifystate'=>2))}">友情链接</a>
+         </li>
+        <li  <if condition='isset($_GET["verifystate"]) && $_GET["verifystate"] eq 1'>class="current"</if>>
+          <a href="{:U('index',array('name'=>'Link','verifystate'=>1))}">未审核链接</a>
+        </li>
+      </ul>
+  </div>
+
+   <div class="mb10">
+    <a href="{:U('add',array('name'=>'Link'))}"  class="btn" title="添加链接"><span class="add"></span>添加链接</a>
+       
+      
+  </div>
+  <form class="J_ajaxForm" action="" method="post"> 
+  <div class="table_list">
+  <table width="100%" cellspacing="0" >
+    <thead>
+      <tr>
+        <td width="10"><label><input type="checkbox" class="J_check_all" data-direction="x" data-checklist="J_check_x"></label></td>
+        <td width="50" align="left">lid</td>
+        <td width="80" align="left">排序</td>
+        <td align="left">名称</td>
+        <td align="left" width="80">类型</td>
+        <td width="230" align="center">管理操作</td>
+      </tr>
+    </thead>
+    <tbody>
+    <if condition='$data'>
+      <volist name='data' id='value'>
+      <tr>
+      	  <td><input type="checkbox" class="J_check" data-yid="J_check_y" data-xid="J_check_x" name="lid[{$value.lid}]" value="{$value.lid}"></td>
+          <td >{$value.lid}</td>
+          <td ><input type="text" name="sort[{$value.lid}]" value="{$value.sort}" class="input" size='3'></td>
+          <td ><a href="{$value.url}" target="_blank">{$value.name}</a></td>
+          <td ><if condition='$value["logo"] eq "" '>文字<else /> 图片</if></td>
+          <td align='center'>
+          <a href="{$value.url}" target="_blank">访问</a> |
+          <a href="{:U('edit',array('name'=>'Link','lid'=>$value['lid'],'verfiystate'=>$value['verifystate']))}">修改</a> |  <a class="J_ajax_del" href="{:addons_url('Link://Link/del',array('lid'=>$value['lid'],'verifystate'=>$value['verifystate']))}">删除</a></td>
+        </tr>
+        </volist>
+      <else />
+       <tr>
+        <td colspan="7">没有找到符合条件的记录</td>
+       </tr>
+      </if>
+     
+     </tbody>
+
+  </table>
+
+   <div class="p10"><div class="pages"> {$page} </div> </div>
+  </div>
+
+     <div class="btn_wrap">
+      <div class="btn_wrap_pd">
+        <label class="mr20"><input type="checkbox" class="J_check_all" data-direction="y" data-checklist="J_check_y">全选</label>                
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:addons_url('Link://Link/sort')}">排序</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:addons_url('Link://Link/check')}">审核</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:addons_url('Link://Link/cancel_check')}">取消审核</button>
+      
+      </div>
+    </div>
+</form>
+</div>

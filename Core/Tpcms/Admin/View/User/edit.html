@@ -1,0 +1,156 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+	<div class="nav">
+    <ul class="cc">
+       	<li><a href="{:U('User/index',array('role'=>$_GET['role']))}"><if condition='$_GET["role"] eq 2'>会员<else />管理员</if>列表</a></li>
+        <li class="current"><a href="javascript:;">编辑<if condition='$_GET["role"] eq 2'>会员<else />管理员</if></a></li>
+      </ul>
+	</div>
+    <div class="h_a"><if condition='$_GET["role"] eq 2'>会员<else />管理员</if>属性</div>
+  	<form action="{:U('User/edit')}" method="post" class="J_ajaxForms"  name="myform" id="myform" >
+    <div class="table_full">
+      <table width="100%"  class="table_form">
+        <if condition='$_GET["role"] eq 2'>
+      	<tr>
+          <th width="120">会员等级：</th>
+          <td class="y-bg">
+
+          	<select name="grade_gid" id="grade_gid">
+          		<option value="">请选择会员等级</option>
+          		<volist name='grade' id='v'>
+          			<option value = '{$v.gid}' <if condition='$data["grade_gid"] eq $v["gid"]'>selected='selected'</if>>{$v.gname}</option>
+          		</volist>
+          	</select>
+          
+          </td>
+        </tr>
+        <else />
+        <tr>
+          <th width="120">角色：</th>
+          <td class="y-bg">
+              <if condition='$data["uid"] eq 1'>
+              超级管理员
+            <else />
+              <table>
+                  <foreach name='data.access' item='a'>
+                  <tr>
+                      <if condition='$key eq 0'>
+                      <th class='hand' onclick='add_group(this)'>[+]</th>
+                      <else />
+                      <th class='hand' onclick='del_group(this)'>[-]</th>
+                      </if>
+                  <td>
+                      <select name="group_id[]">
+                      <volist name='authGroup' id='v'>
+                          <option value="{$v.id}" <if condition='$v["id"] eq $a'> selected='selected'</if>>{$v.title}</option>
+                       </volist>
+                      </select>
+                  </td>
+                  </tr>
+                 </foreach>
+              </table>
+            </if>
+          </td>
+        </tr>
+      </if>
+        <tr>
+          <th width="120">用户名称：</th>
+          <td class="y-bg"><span class="must_red">*</span><input type="text" class="input" name="username" id="username" size="30" value="{$data.username}" /></td>
+        </tr>
+        <tr>
+          <th width="120">用户昵称：</th>
+          <td class="y-bg"><span class="must_red">*</span><input type="text" class="input" name="nickname" id="nickname" size="30" value="{$data.nickname}" /></td>
+        </tr>
+         <tr>
+          <th width="120">邮箱：</th>
+          <td class="y-bg"><span class="must_red">*</span><input type="text" class="input" name="email" id="email" size="30" value="{$data.email}" /></td>
+        </tr>
+        <tr>
+          <th width="120">用户密码：</th>
+          <td class="y-bg"><input type="password" class="input" name="password" id="password" size="30" value="" /> 不填写，则不修改</td>
+        </tr>
+        <tr>
+          <th width="120">用户确认密码：</th>
+          <td class="y-bg"><input type="password" class="input" name="passwords" id="passwords" size="30" value="" /> 不填写，则不修改</td>
+        </tr>
+        <tr>
+          <th>状态：</th>
+          <td class="y-bg">
+
+          	<label>
+          		<input type="radio" name="is_lock" value="1" <if condition='$data["is_lock"] eq 1'> checked='checked'</if>> 锁定
+          	</label>
+
+          	<label>
+          		<input type="radio" name="is_lock" value="0" <if condition='$data["is_lock"] eq 0'> checked='checked'</if>> 正常
+          	</label>
+          </td>
+        </tr>
+       
+      </table>
+    </div>
+    <div class="">
+      <div class="btn_wrap_pd">
+      	<input type="hidden" name="uid" value="{$data.uid}">
+      	<input type="hidden" name='role' value="{$Think.get.role}" />
+        <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit">编辑</button>
+     
+      </div>
+    </div>
+  </form>
+</div>
+<script>
+  var userValidate={ 
+        rules: {
+          "grade_gid":{
+          required:1
+        },
+        "username":{
+          required:1
+        },
+        "nickname":{
+          required:1
+        },
+        "email":{
+          required:1,
+          email:true,
+        },
+        "password":{
+          
+        },
+        "passwords":{
+          
+          equalTo:"#password"
+          
+        },
+      },
+           
+      messages: {
+          "grade_gid":{
+          required:"请选择会员等级"
+        },
+        "username":{
+          required:"会员名称不能为空！"
+        },
+        "nickname":{
+          required:"会员昵称称不能为空！"
+        },
+        "email":{
+          required:"邮箱不能为空！",
+          email:"邮箱格式不对！"
+        },
+        "password":{
+          
+        },
+        "passwords":{
+          equalTo:"两次密码不一致！"
+        },
+        
+      }};
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/mod.content_addtop.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/mod.user.js"></script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<include file="Public:head" />
+
+
+    <!--<div id="fullPage" style="margin-top:9%; ">-->
+    <div id="fullPage"  ">
+
+      <div class="section" style="background: #ffffff;">
+       <div class="page5_con" >
+        <div class="page4_title" style="font-size: 40px;margin:0 0 5% 0;">新闻资讯</div>
+        <div class="wrapper2" >
+         <ul>
+          <pagelist >
+           <li >
+
+             <p >>&nbsp;&nbsp;&nbsp;&nbsp;<a href="{$field.url}" >{$field.article_title|cms_substr="25"}
+              <span style="float:right;margin-left:10%;">{$field.addtime}</span>
+             </a></p>
+
+           </li>
+          </pagelist>
+
+         </ul>
+        </div>
+           <div class="pp">
+               <page />
+           </div>
+
+       </div>
+      </div>
+
+     <style>
+      .wrapper2{max-width:60%;margin:0 auto;}
+      .wrapper2 li{
+       text-align: left;
+       position: relative;
+       width: 100%;
+       height: 50px;
+       list-style: none;
+       margin: 5px;
+       display: inline-block;
+       perspective: 50px;
+      }
+       .pp{
+           margin-top:5%;
+           font-size: small;
+
+       }
+     </style>
+        <include file='Public:foot'/>

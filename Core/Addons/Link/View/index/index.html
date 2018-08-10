@@ -1,0 +1,6 @@
+<if condition='$data'>
+友情链接：
+<foreach name='data' item='v'>
+	<a href="{$v.url}" target="_blank">{$v.name}</a>
+</foreach>
+</if>

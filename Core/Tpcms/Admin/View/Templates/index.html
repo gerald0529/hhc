@@ -1,0 +1,38 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<style>
+.design_page li {
+	height: 340px;
+}
+</style>
+<div class="wrap J_check_wrap">
+  <div class="nav">
+    <ul class="cc">
+        <li class="current"><a href="javascript:;">主题管理</a></li>
+      </ul>
+</div>
+  <div class="mb10 cc">共 <span class="org">{$count}</span> 套模板</div>
+  <div class="design_page">
+    <ul class="cc">
+      <volist name='data' id='value'>
+        <li>
+          <div class="img">
+            <a title="点击进行模板主题切换" href="{:U('set_templates',array('filename'=>$value['filename']))}">
+              <img src="{$value.image}" width="230" height="262" lt="Default"></a></div>
+          <div class="title" title="{$value.name}">{$value.name}</div>
+          <div class="ft"> 
+
+           <if condition='$value["current"]'>
+            <span class="org"><i>已使用</i></span>
+           <else />
+             <span class="blue"><i>&nbsp;&nbsp;未使用</i></span>
+           </if>
+
+          </div>
+        </li>   
+      </volist>
+    </ul>
+  </div>
+</div>
+</body>
+</html>

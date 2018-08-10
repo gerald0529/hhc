@@ -1,0 +1,40 @@
+<include file="Public:head" />
+
+<div id="fullPage" ">
+
+    <div class="section" style="color: #ffffff;">
+        <div class="page5_con">
+            <div class="page4_title" style="color: #ffffff;margin-top:10%;">新闻资讯</div>
+            <div class="wrapper2" >
+
+
+                            <p >
+                                <span style="float:left;">来源: 本站；</span>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+                                <span style="float:left;">点击数: {$cms.click} 次；</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <!-- <span style="float:left;">关键词: {$cms.keywords}；</span>  &nbsp;&nbsp;&nbsp;&nbsp; -->
+                                <span style="float:right;">添加时间：{$cms.addtime}</span>
+                            </p>
+                            <p style="margin-top:1%; ">{$cms.body}</p>
+                <div class="yu">
+
+                    <div style="float:left;">上一篇:&nbsp;&nbsp;&nbsp;&nbsp;<next flag='2' /></div><br/>
+                    <div style="float:left;">下一篇:&nbsp;&nbsp;&nbsp;&nbsp;<next flag='3' /></div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <style>
+        #fullPage .section{background-color:#ffffff;}
+        .fp-tableCell{display: inline; }
+        .wrapper2{max-width:55%;margin:0 auto;}
+        .wrapper2 p {
+            font: 16px "Microsoft Yahei";
+        }
+        .yu{width: 55%;margin: 0 auto; font: 20px "Microsoft Yahei";position: absolute;bottom:5%;}
+        .yu a{color:#ffffff; }
+
+    </style>
+     <include file='Public:foot'/>

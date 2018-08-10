@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>HHC</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/css_js/reset.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/css_js/animation.css" />
+    <link rel="stylesheet" href="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/css_js/jquery.fullPage.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/css_js/index_fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/css_js/demo.css" />
+    <!--这个一定放前面-->
+    <script src="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/css_js/check_ie.js" type="text/javascript" charset="utf-8"></script>
+    <script type="text/javascript">
+        window.onload = function() {
+            IEVersion()
+            console.log(	IEVersion() 	)
+
+        }
+    </script>
+
+</head>
+
+<body style="min-width: 12rem;overflow: hidden;">
+<div class="header">
+    <ul id="menu">
+        <img src="__ROOT__/{$Think.Config.cfg_logo}" alt="" class="logo" />
+        <li data-menuanchor="page1" class="active">
+            <a href="#page1">Home</a>
+        </li>
+        <channel type='top' >
+            <li data-menuanchor="{$field.keywords}" >
+                <if condition="$field['cname_en'] neq 'news'">
+                    <a href="/#{$field.keywords}" >
+                        <else />
+                        <a  href="{$field.url}" class="active">
+                </if>
+                {$field.cname_en|cms_substr="14"}
+                </a>
+            </li>
+        </channel>
+        <!--<li style="float: right;">
+            <a href="/?t=en">
+                <img src="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/img/zh_en.png" class="zh_en" />
+            </a>
+        </li>-->
+        <li style="float: right;">
+            <a href="/?t=default">
+                <img src="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/img/en_zh.png" class="zh_en" />
+            </a>
+        </li>
+    </ul>
+</div>

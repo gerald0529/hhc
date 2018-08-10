@@ -1,0 +1,76 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+	<div class="nav">
+    <ul class="cc">
+        <li ><a href="{:U('Config/index')}">网站设置</a></li>
+		<li class="current"><a href="javascsript:;">添加配置</a></li>
+		<li ><a href="{:U('Config/update_cache')}">更新缓存</a></li>
+      </ul>
+	</div>
+    <div class="h_a">添加配置</div>
+  	<form action="{:U('Config/add')}" method="post" class="J_ajaxForm" >
+    <div class="table_full">
+      <table width="100%"  class="table_form">
+      	<tr>
+			<th width="200">分组</th>
+			<td>
+				<select name="group" >
+					<option value="基本设置">基本设置</option>
+					<option value="更多设置">更多设置</option>
+				</select>
+			</td>
+		</tr>
+        <tr>
+			<th>
+			标题
+			
+			</th>
+			<td><input type="text" name='title' class='input' size='50'/></td>
+		</tr>
+		<tr>
+			<th>变量
+			
+			</th>
+			<td><input type="text" name='code' class='input' size='50'/></td>
+		</tr>
+		<tr>
+			<th>
+			排序
+		
+			</th>
+			<td><input type="text" name='sort' class='input' value="100" size='50' /></td>
+		</tr>
+		<tr>
+			<th>类型</th>
+			<td>
+				<label><input name='config_type' type="radio"  value="2"  checked="checked" /> 单行文本</label>&nbsp;
+				<label><input name='config_type' type="radio"  value="3" /> 多行文本</label>&nbsp;
+				<label><input name='config_type' type="radio"  value="5" /> 单选按钮</label>&nbsp;
+				<label><input name='config_type' type="radio"  value="1" /> 图片上传框</label>&nbsp;
+				<label><input name='config_type' type="radio"  value="4" /> 文件上传框</label>&nbsp;	
+			</td>
+
+		</tr>
+
+		
+		<tr>
+			<th>配置值</th>
+			<td>
+				<textarea name="body" style="width:80%;height:80px"></textarea>
+			</td>
+		</tr>
+
+      </table>
+    </div>
+    <div class="">
+      <div class="btn_wrap_pd">
+        <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit">添加</button>
+     
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+</body>
+</html>

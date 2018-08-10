@@ -1,0 +1,142 @@
+<include file="Public:head" />
+<div id="fullPage">
+ <showad cid="1">
+ <div class="section page1" style="overflow: hidden;
+				background: url({$field.pic}) center center no-repeat;
+				background-size:cover;">
+ </showad>
+  <!--<img src="img/home_bg.jpg" class="home_bg" />-->
+  <div class="home_con">
+   <showad cid="13">
+    <img src="{$field.pic}" class="home_img1 wow  fadeInRight" data-wow-delay="0.2s" />
+    <img src="{$field.pic_en}" class="home_img2 wow  fadeInRight" data-wow-delay="0.4s" />
+   </showad>
+  </div>
+  <div id="particles-js"></div>
+ </div>
+ <div class="section page2" style="overflow: hidden;">
+  <img src="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/img/page_bg.png" class="page2_bg" />
+  <div class="page2_con">
+   <debris id="1">
+    <div class="Pic_List_title">{$field.title}</div>
+   </debris>
+   <div class="JieShao_Cont wow fadeInLeft">
+    <debris id="1">
+     <p style="text-align: left;">{$field.body}</p>
+    </debris>
+    <ul class="JieShao_a" style="margin-top: 0.6rem;">
+     <channel type='son' cid="1">
+     <li>
+      <a href="" target="_blank" style="text-indent: -1em;">{$field.cname}</a>
+     </li>
+     </channel>
+
+    </ul>
+
+   </div>
+   <div class="lightbox video wow fadeInRight" style="width: 4rem;">
+    <debris id="5">
+     <img src="{$field.pic}" class="mp4_cilck" style="display: block;width: 4rem;">
+    </debris>
+    <div class="mp4" style="display: none; width: 4rem; ">
+     <video id="video" style="width:4rem;">
+      <source src="public/MP4/ffbb.mp4" media="only screen and (min-device-width: 568px)"></source>
+      <source src="public/MP4/ffbb.mp4" media="only screen and (max-device-width: 568px)"></source>
+      <source src="public/MP4/ffbb.ogv"></source>
+     </video>
+    </div>
+
+   </div>
+  </div>
+ </div>
+
+ <div class="section page3">
+  <showad cid="10">
+  <div class="slide">
+   <img src="{$field.pic}" alt="" />
+  </div>
+  </showad>
+
+ </div>
+ <div class="section page4">
+  <div class="page4_con">
+   <div class="page4_title">哈哈链核心技术</div>
+   <ul class="lightbox_table ">
+
+     <?php $i=1;?>
+     <showad cid="9">
+      <if condition="$i eq 1">
+    <li class=" wow fadeInRight">
+     <img src="{$field.pic}" alt="" />
+    </li>
+    <elseif condition="$i eq 2"/>
+    <li class=" wow fadeIn" style="margin:  0 1.2rem;">
+     <img src="{$field.pic}" alt="" />
+    </li>
+    <else />
+    <li class=" wow fadeInLeft">
+     <img src="{$field.pic}" alt="" />
+    </li>
+    </if>
+    <?php $i++;?>
+    </showad>
+
+   </ul>
+   <div style="font-size: 0.4rem;">
+    发展路线
+   </div>
+   <div class="path">
+    <debris id="4"><img src="{$field.pic}" class="path_bg" /></debris>
+    <!--<img src="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/img/path.png" class="path_bg" />-->
+    <span class=" wow fadeInLeft technology technology1" data-wow-delay="0.1s">2018年6月 项目开始筹建</span>
+    <span class=" wow fadeInRight technology technology2" data-wow-delay="0.2s">2018年7月 HHC白皮书,官网搭建</span>
+    <span class=" wow fadeInRight technology technology3" data-wow-delay="0.3s">2018年8月 开启基石份额认购和前期宣传推广</span>
+    <span class=" wow fadeInRight technology technolog4" data-wow-delay="0.4s">2018年8月底 开启全球公演喝公募计划</span>
+    <span class=" wow fadeInRight technology technology5 " data-wow-delay="0.5s">2018年9月 开放热钱包喝开源代码</span>
+    <span class=" wow fadeInRight technology technology6 " data-wow-delay="0.6s">2018年10月 上线交易所</span>
+
+   </div>
+  </div>
+
+ </div>
+ <div class="section">
+  <div class="page5_con">
+   <div class="page4_title" style="color: #000000;font-size: 40px;">合作机构</div>
+   <div class="wrapper" style="width:900px;margin:0 auto;">
+    <div id="vertical" class="brand vertical">
+     <showad cid="2">
+     <a target="_blank">
+      <image height='50px' width='180px' src='{$field.pic}'></image>
+      <div class="info">HHC</div>
+     </a>
+     </showad>
+
+    </div>
+
+   </div>
+
+  </div>
+ </div>
+ <div class="section page6">
+  <div class="page5_con">
+   <div class="page4_title" style="color: #ffffff;font-size: 0.4rem;">联系我们</div>
+   <ul class="page6_ul">
+    <showad cid="12">
+     <if condition="$field['name'] neq 8">
+      <li>
+       <img src="{$field.pic}" alt="" />
+      </li>
+      <else />
+      <li style="margin-right: 0;">
+       <img src="{$field.pic}" alt="" />
+      </li>
+     </if>
+    </showad>
+
+   </ul>
+  </div>
+ </div>
+</div>
+
+</body>
+<include file="Public:foot" />

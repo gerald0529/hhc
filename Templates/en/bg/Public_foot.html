@@ -1,0 +1,101 @@
+<script src="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/js/jquery-1.8.3.min.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/js/jquery.fullPage.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/js/particles.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/js/demo.js" type="text/javascript" charset="utf-8"></script>
+<script src="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/js/wow.js" type="text/javascript" charset="utf-8"></script>
+<script type="text/javascript">
+    $(function() {
+
+    })
+</script>
+<script type="text/javascript">
+    $(function() {
+
+        //全屏3滚动
+        $('#fullPage').fullpage({
+            sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#0d3575', '#ffffff', '#0d3575'],
+            anchors: ['page1', 'page2', 'page3', 'page4', 'page5', 'page6'],
+            menu: '#menu',
+            css3: true,
+            scrollingSpeed: 1000,
+            scrollBar: true,
+            afterRender: function() {
+                //设置滚动到该页面后执行动画
+                wow = new WOW({
+                    animateClass: 'animated',
+                });
+                wow.init();
+            }
+
+        });
+        //狄三平轮播
+        setInterval(function() {
+            console.log(0)
+            $.fn.fullpage.moveSlideRight();
+
+        }, 5000);
+
+        //星云
+        particlesJS('particles-js', {
+            particles: {
+                color: '#fff',
+                shape: 'circle', // "circle", "edge" or "triangle"
+                opacity: 0.8,
+                size: 3,
+                size_random: true,
+                nb: 120,
+                line_linked: {
+                    enable_auto: true,
+                    distance: 100,
+                    color: '#fff',
+                    opacity: 1,
+                    width: 1,
+                    condensed_mode: {
+                        enable: false,
+                        rotateX: 600,
+                        rotateY: 600
+                    }
+                },
+                anim: {
+                    enable: true,
+                    speed: 1
+                }
+            },
+            interactivity: {
+                enable: true,
+                mouse: {
+                    distance: 300
+                },
+                detect_on: 'canvas', // "canvas" or "window"
+                mode: 'grab',
+                line_linked: {
+                    opacity: .3
+                },
+                events: {
+                    onclick: {
+                        enable: true,
+                        mode: 'push', // "push" or "remove"
+                        nb: 4
+                    }
+                }
+            },
+            /* Retina Display Support */
+            retina_detect: true
+        });
+        //播放视频
+        $(".mp4_cilck").click(function() {
+            $(".mp4_cilck").hide();
+            $(".mp4").show();
+            $(".video").find("video")[0].play();
+        });
+        $("#video").toggle(function() {
+            console.log("000")
+            $(".video").find("video")[0].pause();
+        }, function() {
+            $(".video").find("video")[0].play();
+        })
+
+    });
+</script>
+
+</html>

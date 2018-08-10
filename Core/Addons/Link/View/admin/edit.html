@@ -1,0 +1,66 @@
+<div class="wrap J_check_wrap">
+	<div class="nav">
+    <ul class="cc">
+         <li ><a href="{:U('index',array('name'=>'Link','verifystate'=>I('get.verifystate')))}">友情链接</a></li>
+        <li class="current"><a href="javascript:;">编辑友情链接</a></li>
+        
+      </ul>
+	</div>
+    <div class="h_a">友情链接属性</div>
+  	<form action="{:addons_url('Link://Link/edit')}" method="post" class="J_ajaxForm" >
+    <div class="table_full">
+      <table width="100%"  class="table_form">
+        <tr>
+          <th width='200'>名称：</th>
+          <td class="y-bg"><input type="text" class="input" name="name" id="name" size="30" value="{$data.name}" /></td>
+        </tr>
+        <tr>
+          <th>访问地址:</th>
+          <td class="y-bg"><textarea name='url' id='url' style="width:90%;height:80px">{$data.url}</textarea></td>
+        </tr>
+        <tr>
+          <th>排序：</th>
+          <td class="y-bg"><input type="text" class="input" name="sort" id="sort" size="30" value="{$data.sort}" /></td>
+        </tr>
+        <tr>
+          <th>LOGO：</th>
+          <td class="y-bg">
+          	<input type="text" name="logo" id="logo" value="{$data.logo}" size="50" class="input"  ondblclick="image_priview(this.value);"/> 
+            <input type="button" class="button" onclick="javascript:flashupload('image_images', '附件上传','logo',submit_images,'{$Think.const.CONTROLLER_NAME}',1,1,'{$Think.Config.cfg_image}')" value="上传图片" /><span class="gray"> 双击可以查看图片！</span>
+          </td>
+        </tr>
+        <tr>
+          <th>状态：</th>
+          <td class="y-bg">
+            <label>
+              <input type="radio" name="verifystate" value="1" <if condition='$data["verifystate"] eq 1'>  checked="checked"</if>> 审核中
+            </label>
+            <label>
+            <input type="radio" name="verifystate" value="2" <if condition='$data["verifystate"] eq 2'>  checked="checked"</if>> 审核通过
+            </label>
+          </td>
+        </tr>
+        <tr>
+          <th>联系人：</th>
+          <td class="y-bg"><input type="text" class="input" name="people" id="people" size="30" value="{$data.people}" /></td>
+        </tr>
+       <tr>
+          <th>联系电话：</th>
+          <td class="y-bg"><input type="text" class="input" name="phone" id="phone" size="30" value="{$data.phone}" /></td>
+        </tr>
+        <tr>
+          <th >联系邮箱：</th>
+          <td class="y-bg"><input type="text" class="input" name="email" id="email" size="30" value="{$data.email}" /></td>
+        </tr>
+      </table>
+    </div>
+    <div class="">
+      <div class="btn_wrap_pd">
+      	<input type="hidden" name="lid" value="{$data.lid}">
+        <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit">编辑</button>
+     
+      </div>
+    </div>
+   
+  </form>
+</div>

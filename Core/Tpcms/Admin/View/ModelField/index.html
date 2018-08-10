@@ -1,0 +1,61 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+  <div class="nav">
+  <div class="return"><a href="{:U('Model/index')}">返回模型管理</a></div>  <ul class="cc">
+        <li class="current"><a href="javascript:;">字段管理</a></li>
+        <li ><a href="{:U('ModelField/add',array('mid'=>$_GET['mid']))}">添加字段</a></li>
+        <li ><a href="{:U('ModelField/update_cache',array('mid'=>$_GET['mid']))}">更新字段缓存</a></li>
+      </ul>
+</div>
+  <div class="h_a">模型“{$model.remark}”，字段属性</div>
+  <form class="J_ajaxForm" action="{:U('sort')}" method="post">
+  <div class="table_list">
+  <table width="100%" cellspacing="0" >
+        <thead>
+          <tr>
+            <td width="16"><label><input type="checkbox" class="J_check_all" data-direction="x" data-checklist="J_check_x"></label></td>
+            <td width="50" align="left">Fid</td>
+            <td width="70" align='center'>排序</td>
+            <td width="90">字段名</td>
+            <td>别名</td>
+            <td width="100">字段类型</td>
+            <td width="30" align='center'>系统</td>
+			<td width="30" align='center'>状态</td>
+			<td width="30" align='center'>列表</td>
+            <td width="100" align='center'>管理操作</td>
+          </tr>
+        </thead>
+        <tbody class="td-line">
+		<volist name='data' id='value'>
+        <tr>
+            <td><input type="checkbox" class="J_check" data-yid="J_check_y" data-xid="J_check_x" name="fid[{$value.fid}]" value="{$value.fid}"></td>
+            <td>{$value.fid}</td>
+            <td align='center'><input name='sort[{$value.fid}]' type='text' size='3' value='{$value.sort}' class='input'></td>
+            <td>{$value.fname}</td>
+            <td>{$value.title}</td>
+            <td>{$value.type}</td>
+            <td align='center'><if condition='$value["is_system"]'><font color="blue">√</font><else /><font color="red">╳</font></if></td>
+            <td align='center'><if condition='!$value["is_disabled"]'><font color="blue">√</font><else /><font color="red">╳</font></if></td>
+           
+            <td align='center'><if condition='$value["show_lists"]'><font color="blue">√</font><else /><font color="red">╳</font></if></td>
+            <td align='center'>
+            	<if condition='$value["is_system"]'><font color="#BEBEBE"> 修改</font><else /><a href="{:U('ModelField/edit',array('mid'=>$_GET['mid'],'fid'=>$value['fid']))}">修改</a></if>   | <if condition='$value["is_system"]'><font color="#BEBEBE"> 删除</font><else /><a href="{:U('ModelField/del',array('mid'=>$_GET['mid'],'fid'=>$value['fid']))}" class="J_ajax_del"> 删除</a></if></td>
+          </tr>  
+      		</volist>
+          </tbody>
+      </table>
+  </div>
+  <div class="btn_wrap">
+      <div class="btn_wrap_pd">
+        <label class="mr20"><input type="checkbox" class="J_check_all" data-direction="y" data-checklist="J_check_y">全选</label>       
+        <input type="hidden" name="mid" value="{$Think.get.mid}" />     
+        <button class="btn   J_ajax_submit_btn" type="submit" type="submit" data-action="{:U('sort')}" >排序</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('batch_delete',array('mid'=>$_GET['mid']))}">删除</button>
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+</body>
+</html>

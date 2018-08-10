@@ -1,0 +1,157 @@
+<include file="Public:head" />
+<div id="fullPage">
+ <div class="section page1" style="overflow: hidden;">
+  <showad cid="1">
+  <img src="{$field.pic}" class="home_bg" />
+  </showad>
+  <div class="home_con">
+   <showad cid="13">
+   <img src="{$field.pic}" class="home_img1 wow  fadeInRight" data-wow-delay="0.2s" />
+   <img src="{$field.pic_en}" class="home_img2 wow  fadeInRight" data-wow-delay="0.4s" />
+   </showad>
+  </div>
+  <div id="particles-js"></div>
+ </div>
+ <div class="section page2">
+  <debris id="1">
+  <img src="{$field.pic}" class="page2_bg" />
+  </debris>
+  <div class="page2_con">
+   <debris id="1">
+   <div class="Pic_List_title">{$field.title}</div>
+   </debris>
+   <div class="JieShao_Cont wow fadeInLeft">
+    <debris id="1">
+    <p>{$field.body}</p>
+    </debris>
+    <ul class="JieShao_a" style="margin-top: 60px;">
+     <channel type='son' cid="1">
+     <li>
+      <a href="" target="_blank">{$field.cname}</a>
+     </li>
+     </channel>
+    </ul>
+
+   </div>
+   <div class="lightbox video wow fadeInRight">
+    <debris id="5">
+    <img src="{$field.pic}" class="mp4_cilck" style="display: block;">
+    </debris>
+    <div class="mp4" style="display: none; width: 500px;margin-top: -120px; ">
+     <video id="video" width="400" height="500" controls="controls" loop="loop">
+      <source src="public/MP4/ffbb.mp4" media="only screen and (min-device-width: 568px)"></source>
+      <source src="public/MP4/ffbb.mp4" media="only screen and (max-device-width: 568px)"></source>
+      <source src="public/MP4/ffbb.ogv"></source>
+     </video>
+    </div>
+
+   </div>
+  </div>
+ </div>
+
+ <div class="section page3">
+  <showad cid="10">
+  <div class="slide">
+   <img src="{$field.pic}" alt="" />
+  </div>
+  </showad>
+ </div>
+ <div class="section page4">
+  <div class="page4_con">
+   <div class="page4_title">哈哈链核心技术</div>
+   <ul class="lightbox_table ">
+    <?php $i=1;?>
+    <showad cid="9">
+     <if condition="$i eq 1">
+     <li class=" wow fadeInRight">
+      <img src="{$field.pic}" alt="" />
+     </li>
+      <elseif condition="$i eq 2"/>
+      <li class=" wow fadeIn" style="margin:  0 140px;">
+       <img src="{$field.pic}" alt="" />
+      </li>
+       <else />
+      <li class=" wow fadeInLeft">
+       <img src="{$field.pic}" alt="" />
+      </li>
+     </if>
+     <?php $i++;?>
+    </showad>
+
+
+   </ul>
+   <div style="font-size: 40px;">
+    发展路线
+   </div>
+   <div class="path">
+    <debris id="4"><img src="{$field.pic}" class="path_bg" /></debris>
+    <!--<showad cid="14">
+     <?php //P($field);?>
+     <if condition="$field['name'] eq 1">
+        <span class=" wow fadeInLeft technology technology{$field.name}" data-wow-delay="0.{$field.name}s">{$field.info}</span>
+      <elseif condition="$field['name'] eq 4"/>
+      <span class=" wow fadeInLeft technology technology{$field.name}" data-wow-delay="0.{$field.name}s" style="margin-bottom: 5%；">{$field.info}</span>
+      <else />
+      <span class=" wow fadeInRight technology technology{$field.name}" data-wow-delay="0.{$field.name}s">{$field.info}</span>
+     </if>
+    </showad>-->
+    <span class=" wow fadeInLeft technology technology1" data-wow-delay="0.1s">2018年6月 项目开始筹建</span>
+    <span class=" wow fadeInRight technology technology2" data-wow-delay="0.2s">2018年7月 HHC白皮书,官网搭建</span>
+    <span class=" wow fadeInRight technology technology3" data-wow-delay="0.3s">2018年8月 开启基石份额认购和前期宣传推广</span>
+    <span class=" wow fadeInRight technology technolog4" data-wow-delay="0.4s">2018年8月底 开启全球公演喝公募计划</span>
+    <span class=" wow fadeInRight technology technology5 " data-wow-delay="0.5s">2018年9月 开放热钱包喝开源代码</span>
+    <span class=" wow fadeInRight technology technology6 " data-wow-delay="0.6s">2018年10月 上线交易所</span>
+
+
+   </div>
+  </div>
+
+ </div>
+ <div class="section">
+  <div class="page5_con">
+   <div class="page4_title" style="color: #000000;font-size: 40px;">合作机构</div>
+   <div class="wrapper">
+    <ul>
+     <showad cid="2">
+     <li>
+      <div class='picBox'>
+       <div class='show'>
+        <image height='50px' width='180px' src='{$field.pic}'></image>
+       </div>
+       <div class='hide'>
+        <h3>HHC</h3>
+       </div>
+      </div>
+     </li>
+     </showad>
+
+
+
+    </ul>
+   </div>
+
+  </div>
+ </div>
+ <div class="section page6">
+  <div class="page5_con">
+   <div class="page4_title" style="color: #ffffff;font-size: 40px;">联系我们</div>
+   <ul class="page6_ul">
+
+    <showad cid="12">
+     <if condition="$field['name'] neq 8">
+    <li>
+     <img src="{$field.pic}" alt="" />
+    </li>
+      <else />
+      <li style="margin-right: 0;">
+       <img src="{$field.pic}" alt="" />
+      </li>
+     </if>
+    </showad>
+   </ul>
+  </div>
+ </div>
+</div>
+
+</body>
+<include file="Public:foot" />

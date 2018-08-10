@@ -1,0 +1,40 @@
+<include file="Public:head" />
+
+<div id="fullPage" ">
+
+    <div class="section" style="color: #ffffff;">
+        <div class="page5_con">
+            <div class="page4_title" style="color: #ffffff;margin-top:10%;">News</div>
+            <div class="wrapper2" >
+
+
+                            <p >
+                                <span style="float:left;">Source: This station；</span>&nbsp;&nbsp;&nbsp;&nbsp;<br/>
+                                <span style="float:left;">Click: {$cms.click} times；</span>&nbsp;&nbsp;&nbsp;&nbsp;
+                                <!-- <span style="float:left;">关键词: {$cms.keywords}；</span>  &nbsp;&nbsp;&nbsp;&nbsp; -->
+                                <span style="float:right;">Addtime：{$cms.addtime}</span>
+                            </p>
+                            <p style="margin-top:1%; ">{$cms.body2}</p>
+                <div class="yu">
+
+                    <div style="float:left;">Prev:&nbsp;&nbsp;&nbsp;&nbsp;<next flag='2' /></div><br/>
+                    <div style="float:left;">Next:&nbsp;&nbsp;&nbsp;&nbsp;<next flag='3' /></div>
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+    <style>
+        #fullPage .section{background-color:#ffffff;}
+        .fp-tableCell{display: inline; }
+        .wrapper2{max-width:55%;margin:0 auto;}
+        .wrapper2 p {
+            font: 16px "Microsoft Yahei";
+        }
+        .yu{width: 55%;margin: 0 auto; font: 20px "Microsoft Yahei";position: absolute;bottom:5%;}
+        .yu a{color:#ffffff; }
+
+    </style>
+     <include file='Public:foot'/>

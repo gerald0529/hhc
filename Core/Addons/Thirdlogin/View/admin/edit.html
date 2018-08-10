@@ -1,0 +1,48 @@
+<div class="wrap J_check_wrap">
+	<div class="nav">
+    <ul class="cc">
+         <li ><a href="{:U('Addons/index',array('name'=>'Thirdlogin'))}">第三方登录</a></li>
+        <li class="current"><a href="javascript:;">编辑第三方登录</a></li>
+        
+      </ul>
+	</div>
+    <div class="h_a">第三方登录接属性</div>
+  	<form action="{:addons_url('Thirdlogin://Thirdlogin/edit')}" method="post" class="J_ajaxForm" >
+    <div class="table_full">
+      <table width="100%"  class="table_form">
+        <tr>
+          <th width='200'>平台名称：</th>
+          <td class="y-bg">{$data.name}</td>
+        </tr>
+    	<tr>
+          <th width='200'>状态：</th>
+          <td class="y-bg">
+          	
+          	<label>
+          		<input name="verifystate" type="radio" value="1" <if condition='$data["verifystate"] eq 1'> checked='checked'</if>> 禁用
+          	</label>
+          		<label>
+          		<input name="verifystate" type="radio" value="2" <if condition='$data["verifystate"] eq 2'> checked='checked'</if>>启用
+          	</label>
+          </td>
+        </tr>
+        <tr>
+          <th width='200'>合作id：<br>在登录平台申请的appid</th>
+          <td class="y-bg"><input class="input" type="text"  name="partnerid" value="{$data.partnerid}" style="width:50%"></td>
+        </tr>
+         <tr>
+          <th width='200'>密钥：<br>在登录平台申请的key</th>
+          <td class="y-bg"><input class="input" type="text"  name="secret"  value="{$data.secret}" style="width:50%"></td>
+        </tr>
+      </table>
+    </div>
+    <div class="">
+      <div class="btn_wrap_pd">
+      	<input type="hidden" name="id" value="{$data.id}">
+        <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit">编辑</button>
+     
+      </div>
+    </div>
+   
+  </form>
+</div>

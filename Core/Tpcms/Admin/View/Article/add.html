@@ -1,0 +1,224 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<style>
+.pop_nav{
+	padding: 0px;
+}
+.pop_nav ul{
+	border-bottom:1px solid #266AAE;
+	padding:0 5px;
+	height:25px;
+	clear:both;
+}
+.pop_nav ul li.current a{
+	border:1px solid #266AAE;
+	border-bottom:0 none;
+	color:#333;
+	font-weight:700;
+	background:#F3F3F3;
+	position:relative;
+	border-radius:2px;
+	margin-bottom:-1px;
+}
+
+</style>
+<div class="wrap J_check_wrap">
+  <div class="nav">
+    <ul class="cc">
+      <if condition='$cat["cat_type"] eq 4'>
+      <li  class="current"><a href="javascirpt:;">{$cat.cname}添加文档</a></li>
+      <else />
+  		<li ><a href="{:U('Article/index',array('category_cid'=>$_GET["category_cid"],'verifystate'=>2))}">{$cat.cname}列表</a></li>
+      <li class="current"><a href="javascrip:;">添加文档</a></li>
+      </if>
+		
+      </ul>
+	</div>
+  <div class="pop_nav">
+    <ul class="J_tabs_nav">
+      <li class="current"><a href="javascript:;">基本属性</a></li>
+      <li class=""><a href="javascript:;">图集</a></li>
+      <li class=""><a href="javascript:;">其他设置</a></li>
+    </ul>
+  </div>
+  <form class="J_ajaxForms" name="myform" id="myform" action="{:U('Article/add')}" method="post">
+    <div class="J_tabs_contents">
+      <div>
+        <div class="h_a">基本属性</div>
+        <div class="table_full">
+          <table width="100%" class="table_form ">
+            <tr>
+              <th  width="160">所属栏目：</th>
+              <td>
+                <select  name="category_cid">
+                  <option value="{$topCat.cid}">{$topCat.cname}</option>
+                  <foreach name='topChild' item='v'>
+                  <option value="{$v.cid}" <if condition="$_GET['category_cid'] eq $v['cid']"> selected='selected'</if> >--{$v._html}{$v.cname}</option>
+                  </foreach>
+                </select>
+              	
+              </td>
+            </tr>
+             
+           
+           
+            
+            <tr>
+              <th>标题：</th>
+              <td><span class="must_red">*</span><input type="text" name="article_title" id="article_title" class="input" value="" style='width:50%' ></td>
+            </tr>
+            <if condition='C("cfg_language_en")'>
+              <tr>
+                <th>(英)标题：</th>
+                <td><input type="text" name="article_title_en" id="article_title_en" class="input" value="" style='width:50%' ></td>
+              </tr>
+            </if>
+
+            <tr>
+              <th ><strong>META Keywords(关键词)</strong><br/>
+                关键字中间用半角逗号隔开</th>
+              <td><textarea name='keywords' id='keywords' style="width:90%;height:80px"></textarea></td>
+            </tr>
+            <if condition='C("cfg_language_en")'>
+            <tr>
+              <th >(英)<strong>META Keywords(关键词)</strong><br/>
+                关键字中间用半角逗号隔开</th>
+              <td><textarea name='keywords_en' id='keywords_en' style="width:90%;height:80px"></textarea></td>
+            </tr>
+            </if>
+            <tr>
+              <th ><strong>META Description(描述)</strong><br/>
+                针对搜索引擎设置的网页描述</th>
+              <td><textarea name='description' id='description' style="width:90%;height:80px"></textarea></td>
+            </tr>
+            <if condition='C("cfg_language_en")'>
+            <tr>
+              <th >(英)<strong>META Description(描述)</strong><br/>
+                针对搜索引擎设置的网页描述</th>
+              <td><textarea name='description_en' id='description_en' style="width:90%;height:80px"></textarea></td>
+            </tr>
+            </if>
+            <tr>
+              <th>显示排序：</th>
+              <td><input type="text" name="sort" id="sort" class="input" value="100"></td>
+            </tr>
+            <tr>
+              <th>浏览次数：</th>
+              <td><input type="text" name="click" id="click" class="input" value="900"></td>
+            </tr>
+            <tr>
+              <th>发布时间：</th>
+              <td><input type="text" name="addtime" id="addtime" class="input J_date" value="<?php echo format_date(time(),0);?>"></td>
+            </tr>
+            <tr>
+              <th>文档属性：</th>
+              <td>
+                <foreach name='Think.Config.flag' item='v'>
+                <label><input type="checkbox" value="{$v}" name="flag[]"><span>{$v}</span></label>&nbsp;
+                </foreach>
+
+              </td>
+            </tr>
+            <tr>
+              <th>状态：</th>
+              <td>
+                <label><input type="radio" value="1" name="verifystate"><span>未审核</span></label>&nbsp;
+                <label><input type="radio" value="2" name="verifystate" checked="checked"><span>通过</span></label>&nbsp;
+               
+
+              </td>
+            </tr>
+           
+            <tr>
+              <th>缩略图：</th>
+              <td>
+              <input type="text" name="pic" id="pic" value="" size="50" class="input"  ondblclick="image_priview(this.value);"/> 
+              <input type="button" class="button" onclick="javascript:flashupload('image_images', '附件上传','pic',submit_images,'{$Think.const.CONTROLLER_NAME}',1,1,'{$Think.Config.cfg_image}')" value="上传图片" /><span class="gray"> 双击可以查看图片！</span>
+              </td>
+            </tr>
+            <tr>
+              <th>文件：</th>
+              <td>
+                <input type="text" name="file" id="file" value="" size="50" class="input"  ondblclick="image_priview(this.value);"/> 
+                <input type="button" class="button" onclick="javascript:flashupload('image_images', '附件上传','file',submit_attachment,'{$Think.const.CONTROLLER_NAME}',1,0,'{$Think.Config.cfg_file}')" value="上传文件" />
+              </td>
+            </tr>
+
+          
+            <volist name='extForm' id='value'>
+	            <tr>
+	              <th>{$value.title}：</th>
+	              <td>{$value.html}</td>
+	            </tr>
+            </volist>
+            </table>
+            <if condition ='$attrForm'>
+
+            <div class="h_a">筛选</div>
+            <table width="100%" class="table_form ">
+            <volist name='attrForm' id='value'>
+	            <tr>
+	              <th width="160">{$value.title}：</th>
+	              <td>{$value.html}</td>
+	            </tr>
+            </volist>
+             </table>
+        	</if>
+        </div>
+      </div>
+
+
+      <div style="display:none">
+        <div class="h_a">图集</div>
+        <div class="table_full">
+          <table width="100%" class="table_form ">
+            
+            <tr rel='0'>
+              <th width="30" ><span class="hand plus_pics">[+]</span></th>
+              <td>
+              		<input type="text" name="pics[]" id="pics0" value="" size="50" class="input"  ondblclick="image_priview(this.value);"/> 
+              		<input type="button" class="button" onclick="javascript:flashupload('image_images', '附件上传','pics0',submit_images,'{$Think.const.CONTROLLER_NAME}',1,1,'{$Think.Config.cfg_image}')" value="上传图片" /><span class="gray"> 双击可以查看图片！</span>
+                  <input type="text" name="psort[]"  value="100" class="input" style="width:50px">
+              </td>
+            </tr>
+            
+          </table>
+        </div>
+      </div> 
+   
+      <div style="display:none">
+        <div class="h_a">其他设置</div>
+         <div class="table_full">
+         <table width="100%" class="table_form ">
+           <tr>
+             <th width="160">自定义文件：</th>
+             <td><input type="text" name="file_url" id="file_url" class="input" value="" style="width:60%"></td>
+           </tr>
+           <tr>
+             <th>跳转地址：</th>
+             <td><input type="text" name="jump_url" id="jump_url" class="input" value="" style="width:60%"></td>
+           </tr>
+         </table>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="btn_wrap">
+      <div class="btn_wrap_pd">
+         <input type="hidden" name="isattr" value="0" />
+        <button class="btn btn_submit mr10 " type="submit">提交</button>
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" >
+  var articleValidate = '{{$validate}}';
+  var controller = '{$Think.const.CONTROLLER_NAME}';
+  var imgextsion = '{$Think.Config.cfg_image}';
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/mod.content_addtop.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/mod.article.js"></script>
+
+</body>
+</html>

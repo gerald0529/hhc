@@ -1,0 +1,9 @@
+'DB_PREFIX' => 'hanqun_',
+  'DB_TYPE' => 'mysql',
+  'DB_HOST' => 'www.hahac.net',
+  'DB_NAME' => 'www_hahac_net',
+  'DB_USER' => 'www_hahac_net',
+  'DB_PWD' => 'yZ3LYkzseLfdZedR',
+  'DB_PORT' => '3306',
+
+47.74.147.239

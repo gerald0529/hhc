@@ -1,0 +1,77 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+	<div class="nav">
+    <ul class="cc">
+    	 <li ><a href="{:U('AuthGroup/index')}">角色管理</a></li>
+        <li class="current"><a href="javascript:;">设置权限</a></li>
+       
+    </ul>
+	</div>
+    <div class="h_a">设置权限</div>
+  	<form action="{:U('AuthGroup/rule')}" method="post" class="J_ajaxForm" >
+    <div>
+      <table width="100%"  class="table_form">
+       	<volist name='rule' id='node1'>
+            <tr>
+            <td>
+                <h2>
+                	<label>
+                		<input pid='0'  type="checkbox" value="{$node1.id}" id='node{$node1.id}' name="rules[]" <in name='node1.id' value='$field["rules"]'>checked = 'checked' </in> /> {$node1.title}
+                	</label>
+                </h2>
+                <volist name='node1._data' id='node2'>
+            	<fieldset>
+                   
+                   <legend>
+                    	<label><input pid='{$node1.id}' type="checkbox" value="{$node2.id}"  id='node{$node2.id}' name="rules[]" <in name='node2.id' value='$field["rules"]'>checked = 'checked' </in>/> {$node2.title}</label>
+                    </legend>
+                 	
+                    	<volist name='node2._data' id='node3'>
+                            <label>
+                            	<input pid='{$node1.id}' type="checkbox" value="{$node3.id}" class='{$node2.id}' name="rules[]" <in name='node3.id' value='$field["rules"]'>checked = 'checked' </in>/> {$node3.title}
+                            </label>
+        				</volist>
+        			
+                </fieldset>
+               
+      
+          
+        		</volist>
+            </td>
+        </tr>
+
+
+    	</volist>
+      </table>
+    </div>
+    <div class="btn_wrap">
+      <div class="btn_wrap_pd">
+      	<input type="hidden" name="id" value="{$Think.get.id}" />
+        <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit">分配规则</button>
+     
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script> <style>
+	fieldset{
+		border: 1px dotted #ccc;
+		padding:5px;
+		margin: 10px 0;
+	}
+	h2{
+		padding: 10px 0 0 6px;
+    font-size: 16px;
+	}
+	fieldset label{
+		margin-right:15px;
+    word-wrap: break-word; 
+    word-break: break-all;
+    line-height: 24px;
+	}
+
+    </style>
+<script type="text/javascript" src='__PUBLIC__/js/mod.authgroup.js'></script>
+</body>
+</html>

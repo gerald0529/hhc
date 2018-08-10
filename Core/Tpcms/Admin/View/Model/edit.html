@@ -1,0 +1,36 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+  <div class="nav">
+      <ul class="cc">
+          <li ><a href="{:U('Model/index')}">模型管理</a></li>
+          <li class="current"><a href="javascript:;">编辑</a></li>
+        </ul>
+    </div>
+    <div class="h_a">模型属性</div>
+  	<form action="{:U('Model/edit')}" method="post" class="J_ajaxForm" >
+    <div class="table_full">
+      <table width="100%"  class="table_form">
+        <tr>
+          <th width="120">模型中文名称：</th>
+          <td class="y-bg"><span class="must_red">*</span><input type="text" class="input" name="remark" id="remark" size="30" value="{$data.remark}" /></td>
+        </tr>
+        <tr>
+          <th>模型表名：</th>
+          <td class="y-bg"><span class="must_red">*</span><input type="text" class="input" name="name" id="name" size="30" value="{$data.name}" /></td>
+        </tr>
+      </table>
+    </div>
+    <div class="">
+      <div class="btn_wrap_pd">
+         <input type="hidden" value="{$data.mid}" name="mid" />
+         <input type="hidden" name="old_table_name" value="{$data.name}" />
+		 <input type="hidden" name="old_remark" value="{$data.remark}" />
+        <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit">修改</button>
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+</body>
+</html>

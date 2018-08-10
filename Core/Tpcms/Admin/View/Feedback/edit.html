@@ -1,0 +1,57 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+	<div class="nav">
+    <ul class="cc">
+        <li><a href="{:U('index')}">留言列表</a></li>
+        <li class="current" ><a href="javascript:;">查看详细</a></li>
+      </ul>
+	</div>
+    <div class="h_a">查看详细</div>
+  	<form action="{:U('Feedback/edit')}" method="post" class="J_ajaxForm" >
+    <div class="table_full">
+      <table width="100%"  class="table_form">
+        <tr>
+          <th width="120">主题：</th>
+          <td class="y-bg">{$data.theme}</td>
+        </tr>
+         <tr>
+          <th width="120">联系人：</th>
+          <td class="y-bg">{$data.people}</td>
+        </tr>
+        <tr>
+          <th >电话：</th>
+          <td class="y-bg">{$data.tel}</td>
+        </tr>
+        <tr>
+          <th >手机：</th>
+          <td class="y-bg">{$data.phone}</td>
+        </tr>
+         <tr>
+          <th >邮箱：</th>
+          <td class="y-bg">{$data.email}</td>
+        </tr>
+        <tr>
+          <th >地址：</th>
+          <td class="y-bg">{$data.address}</td>
+        </tr>
+       
+        <tr>
+          <th >留言内容：</th>
+          <td class="y-bg">{$data.body}</td>
+        </tr>
+       
+      </table>
+    </div>
+    <div class="">
+      <div class="btn_wrap_pd">
+        <!-- <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit">回复</button> -->
+        <button class="btn btn_submit mr10 " type="button" onclick="location.href='{:U('index')}'">返回</button>
+     
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+</body>
+</html>

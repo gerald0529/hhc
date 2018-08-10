@@ -1,0 +1,89 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+
+  <div class="mb10">
+		<a href="{:U('Debris/add')}"  class="btn" title="添加内容"><span class="add"></span>添加碎片数据</a>
+  </div>
+  <div class="h_a">搜索</div>
+  <form method="get" action="{:U('index')}">
+ 
+    <div class="search_type cc mb10">
+      <div class="mb10"> 
+        关键字：
+        <input type="text" class="input length_2" name="keyword" style="width:200px;" value="{$Think.get.keyword}" placeholder="请输入关键字...">
+        
+          <input type="hidden" value="{$Think.get.verifystate}" name="verifystate">
+          <button class="btn" type="submit">搜索</button>
+        </span>
+      </div>
+    </div>
+  </form>
+  <form class="J_ajaxForm" action="" method="post">
+    <div class="table_list">
+      <table width="100%">
+	        <colgroup>
+	        <col width="50">
+	        <col width="200">
+	        <col width="200">
+	        <col width="50">
+	        <col width="200">
+	       
+	        </colgroup>
+	        <thead>
+	        <tr>
+	           
+	            <td align="left">ID</td>
+	            <td>预览</td>
+	            <td>标题</td>
+	            <td>添加时间</td>
+	          
+	            <td align="center">管理操作</td>
+	          </tr>
+	        </thead>
+          <if condition='$data'>
+          <volist name='data' id='value'>
+	        <tr>
+	           
+	            <td align="left">{$value.id}</td>
+	            <td>
+                <if condition='is_file($value["pic"])'>
+	            	  <img src="__ROOT__/{$value.pic}" alt="" width='' height='80' >
+                <else />
+                  <img src="__ROOT__/Data/Public/images/default.gif" alt="" height='50'>
+                </if>
+	            </td>
+	            <td>{$value.title}</td>
+	           
+	            <td align="center">{$value.addtime|format_date=###,0}</td>
+	            <td align="center">
+	             	
+	            	<a href="{:U('Debris/edit',array('id'=>$value["id"]))}" >修改</a> 
+	            	| 
+	            	<a href="{:U('Debris/del',array('id'=>$value["id"]))}" class="J_ajax_del" >删除</a>
+	            </td>
+	        </tr>
+        </volist>
+        <else/>
+        <tr><td colspan="9">没有找到符合条件的记录</td></tr>
+        </if>
+	        
+        </table>
+      	<div class="p10"><div class="pages"> {$page} </div> </div>
+     
+    </div>
+    <div class="btn_wrap">
+      <div class="btn_wrap_pd">
+        <label class="mr20"><input type="checkbox" class="J_check_all" data-direction="y" data-checklist="J_check_y">全选</label>                
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('sort')}">排序</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('check')}">审核</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('cancel_check')}">取消审核</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('batch_delete')}">删除</button>
+      	
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+</body>
+</html>

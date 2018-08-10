@@ -1,0 +1,162 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+  <div class="nav">
+  <div class="return"><a href="{:U('Model/index')}">返回模型管理</a></div>  <ul class="cc">
+        <li ><a href="{:U('ModelField/index',array('mid'=>$_GET['mid']))}">字段管理</a></li>
+        <li class="current"><a href="javascript:;">编辑字段</a></li>
+       
+      </ul>
+</div>
+  <div class="h_a">模型“{$model.remark}”，字段属性</div>
+  <form name="myform" class="J_ajaxForm" action="{:U('ModelField/edit')}" method="post">
+  <div class="table_full">
+  <table width="100%" class="table_form contentWrap">
+      <tr>
+        <th width="250"><strong>字段类型</strong><br /></th>
+        <td><select name="show_type" id="formtype" >
+        	<option value="1" <if condition="$data['show_type'] eq '1'">selected='selected'</if>>文本</option>
+            <option value="2" <if condition="$data['show_type'] eq '2'">selected='selected'</if>>多行文本</option>
+            <option value="3" <if condition="$data['show_type'] eq '3'">selected='selected'</if>>编辑器</option>
+            <option value="4" <if condition="$data['show_type'] eq '4'">selected='selected'</if>>简单编辑器</option>
+            <option value="5" <if condition="$data['show_type'] eq '5'">selected='selected'</if>>单选框</option>
+            <option value="6" <if condition="$data['show_type'] eq '6'">selected='selected'</if>>下拉框</option>
+            <option value="7" <if condition="$data['show_type'] eq '7'">selected='selected'</if>>多选框</option>
+            <option value="8" <if condition="$data['show_type'] eq '8'">selected='selected'</if>>文件上传框</option>
+            <option value="9" <if condition="$data['show_type'] eq '9'">selected='selected'</if>>图片上传框</option>
+            <!-- <option value="10">地区联动</option> -->
+          </select></td>
+      </tr>
+     
+      <tr>
+        <th width="25%"><font color="red">*</font> <strong>字段名</strong><br />
+          只能由英文字母、数字和下划线组成，并且仅能字母开头，不以下划线结尾 </th>
+        <td><input type="text" name="fname" id="fname" size="20" class="input" value="{$data.fname}"></td>
+      </tr>
+      <tr>
+        <th><font color="red">*</font> <strong>字段别名</strong><br />
+          例如：文章标题</th>
+        <td><input type="text" name="title" id="title" size="30" class="input" value="{$data.title}"></td>
+      </tr>
+      <tr>
+        <th><font color="red">*</font> <strong>字段排序</strong><br />
+          只能输入数字</th>
+        <td><input type="text" name="sort" id="sort" size="30" class="input" value="{$data.sort}"></td>
+      </tr>
+      
+      <tr>
+        <th><strong>数据校验正则</strong><br />
+          系统将通过此正则校验表单提交的数据合法性，如果不想校验数据请留空</th>
+        <td><input type="text" name="validate" id="validate" value="{$data.validate}" size="40" class="input">
+          <select name="pattern_select" onChange="javascript:$('#validate').val(this.value)">
+            <option value="">常用正则</option>
+            <option value="/^[0-9.-]+$/">数字</option>
+            <option value="/^[0-9-]+$/">整数</option>
+            <option value="/^[a-z]+$/i">字母</option>
+            <option value="/^[0-9a-z]+$/i">数字+字母</option>
+            <option value="/^[\w\-\.]+@[\w\-\.]+(\.\w+)+$/">E-mail</option>
+            <option value="/^[0-9]{5,20}$/">QQ</option>
+            <option value="/^http:\/\//">超级链接</option>
+            <option value="/^(1)[0-9]{10}$/">手机号码</option>
+            <option value="/^[0-9-]{6,13}$/">电话号码</option>
+          </select></td>
+      </tr>
+      <tr>
+        <th><strong>数据校验未通过的提示信息</strong></th>
+        <td><input type="text" name="error" value="{$data.error}" size="50" class="input"></td>
+      </tr>
+      <tr>
+        <th>
+            <strong>是否必填</strong>
+        </th>
+        <td>
+            <label>
+                <input name='require' type="radio" value="1"  <if condition="$data['require']">checked="checked"</if>> 是</label>
+            &nbsp;
+            <label>
+                <input name='require' type="radio" value="0" <if condition="!$data['require']">checked="checked"</if>> 否</label>
+        </td>
+    </tr>
+
+    <tr>
+        <th>
+
+           <strong>是否禁用</strong>
+            
+        </th>
+        <td>
+            <label>
+                <input name="is_disabled" type="radio" value="1" <if condition="$data['is_disabled']">checked="checked"</if> > 是</label>
+            &nbsp;
+            <label>
+                <input name="is_disabled" type="radio" value="0" <if condition="!$data['is_disabled']">checked="checked"</if>  > 否</label>
+        </td>
+    </tr>
+    <tr>
+        <th>
+            <strong>是否列表显示</strong>
+            
+        </th>
+        <td>
+            <label>
+                <input name='show_lists' type="radio" value="1"  <if condition="$data['show_lists']">checked="checked"</if> > 是</label>
+            &nbsp;
+            <label>
+                <input name='show_lists' type="radio" value="0" <if condition="!$data['show_lists']">checked="checked"</if>> 否</label>
+        </td>
+    </tr>
+    <tr>
+        <th>默认值</th>
+        <td>
+            <table class='single'>
+                <tr>
+                    <td>
+                    	 <input type="text" name="value[][{$data.field_value.0.fv_id}]" size="50" class="input" value="{$data.field_value.0.field_value}" />
+                        </td>
+                </tr>
+            </table>
+
+            <table class='multiple'>
+            	<if condition='$data["field_value"]'>
+	            	<foreach name='data.field_value' item='v'>
+	                <tr>
+	                    <td>
+	                    
+	                    	<input type="text" name="value[][{$v.fv_id}]" size="50" class="input"value="{$v.field_value}"/>
+	                         <if condition='!$key'>
+	                        <span class='hand plus'>[+]</span>
+	                        <else />
+	                        <span class='hand minus'>[-]</span>
+	                        </if>
+	                       
+	                    </td>
+	                </tr>
+	               </foreach>
+               <else />
+                  <tr>
+                    <td>
+             		    <input type="text" name="value[]" class="input" size="50">
+                    <span class='hand plus'>[+]</span>
+                    </td>
+                  </tr>
+               </if>
+            </table>
+        </td>
+    </tr>
+     
+    </table>
+  </div>
+  <div class="btn_wrap">
+      <div class="btn_wrap_pd">          
+
+        <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit">修改</button>
+        <input name="mid" type="hidden" value="{$Think.get.mid}" />
+        <input name="fid" type="hidden" value="{$Think.get.fid}" />
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/mod.modelfield.js"></script>
+</body>
+</html>

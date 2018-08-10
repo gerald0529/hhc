@@ -1,0 +1,110 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+  <div class="nav">
+    <ul class="cc">
+    	<li <if condition='$_GET["verifystate"] eq 1'>class="current"</if>><a href="{:U('index',array('verifystate'=>1))}">待审核用户评论</a></li>
+      	<li <if condition='$_GET["verifystate"] eq 2'>class="current"</if>><a href="{:U('index',array('verifystate'=>2))}">用户评论</a></li>
+    </ul>
+  </div>
+
+  <div class="h_a">搜索</div>
+  <form method="get" action="{:U('index')}">
+ 
+    <div class="search_type cc mb10">
+      <div class="mb10"> 
+        <span class="mr20">时间：
+        <input type="text" name="start_time" class="input length_2 J_date" value="{$Think.get.start_time}" style="width:80px;" placeholder="选择时间">-<input type="text" class="input length_2 J_date" name="end_time" value="{$Think.get.end_time}" style="width:80px;" placeholder="选择时间">
+    
+        <select class="select_2" name="keytype" style="width:70px;">
+          <option value='article_title'  <if condition='isset($_GET["keytype"]) && $_GET["keytype"] eq "article_title"'> selected='selected'</if> >标题</option>
+
+          <option value='username'  <if condition='isset($_GET["keytype"]) && $_GET["keytype"] eq "username"'> selected='selected'</if>>用户名</option>
+       
+        </select>
+        关键字：
+        <input type="text" class="input length_2" name="keyword" style="width:200px;" value="{$Think.get.keyword}" placeholder="请输入关键字...">
+        
+          <input type="hidden" value="{$Think.get.verifystate}" name="verifystate">
+          <button class="btn" type="submit">搜索</button>
+        </span>
+      </div>
+    </div>
+  </form>
+  <form class="J_ajaxForm" action="" method="post">
+    <div class="table_list">
+      <table width="100%">
+	        <colgroup>
+	        <col width="16">
+	        <col width="60">
+	        <col width="300">
+	        <col width="90">
+	        <col width="">
+	        <col width="80">
+	        <col width="160">
+	        <col width="100">
+	        </colgroup>
+	        <thead>
+	        <tr>
+	            <td><label><input type="checkbox" class="J_check_all" data-direction="x" data-checklist="J_check_x"></label></td>
+
+	            <td align="left">cmid</td>
+	            <td>内容</td>
+	            <td>评分</td>
+	            <td>标题</td>
+	            <td>会员</td>
+	         
+	            <td align="center"><span>评论时间</span></td>
+	            <td align="center">管理操作</td>
+	          </tr>
+	        </thead>
+          <if condition='$data'>
+          <volist name='data' id='value'>
+	        <tr>
+	            <td><input type="checkbox" class="J_check" data-yid="J_check_y" data-xid="J_check_x" name="cmids[{$value.cmid}]" value="{$value.cmid}"></td>
+	            
+	            <td align="left">{$value.cmid}</td>
+	            <td>
+               	{$value.content}
+	            </td>
+	            <td>{$value.score}</td>
+	            <td>
+	                <a href="{:U('index',array('article_aid'=>$value['article_aid']))}">
+	                  {$value.article_title}
+	                </a>
+	              
+              	</td>
+	            <td>{$value.username}</td>
+	            <td align="center">{$value.addtime|format_date}</td>
+
+	            <td align="center">
+	             	
+	            	
+	            	<a href="{:U('UserComment/del',array('cmid'=>$value["cmid"],'verifystate'=>$value['verifystate']))}" class="J_ajax_del" >删除</a>
+	            </td>
+	        </tr>
+        </volist>
+        <else/>
+        <tr><td colspan="8">没有找到符合条件的记录</td></tr>
+        </if>
+	        
+        </table>
+      	<div class="p10"><div class="pages"> {$page} </div> </div>
+     
+    </div>
+    <div class="btn_wrap">
+      <div class="btn_wrap_pd">
+        <label class="mr20"><input type="checkbox" class="J_check_all" data-direction="y" data-checklist="J_check_y">全选</label>                
+       
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('check')}">审核</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('cancel_check')}">取消审核</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('batch_delete')}">删除</button>
+      	
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+
+</body>
+</html>

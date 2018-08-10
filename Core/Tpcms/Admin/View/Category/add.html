@@ -1,0 +1,243 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<style>
+.pop_nav{
+	padding: 0px;
+}
+.pop_nav ul{
+	border-bottom:1px solid #266AAE;
+	padding:0 5px;
+	height:25px;
+	clear:both;
+}
+.pop_nav ul li.current a{
+	border:1px solid #266AAE;
+	border-bottom:0 none;
+	color:#333;
+	font-weight:700;
+	background:#F3F3F3;
+	position:relative;
+	border-radius:2px;
+	margin-bottom:-1px;
+}
+
+</style>
+<div class="wrap J_check_wrap">
+  <div class="nav">
+    <ul class="cc">
+  		<li ><a href="{:U('Category/index')}">栏目列表</a></li>
+		<li class="current"><a href="javascrip:;">添加栏目</a></li>
+      </ul>
+	</div>
+  <div class="pop_nav">
+    <ul class="J_tabs_nav">
+      <li class="current"><a href="javascript:;;">基本属性</a></li>
+      <li class=""><a href="javascript:;;">高级属性</a></li>
+
+    </ul>
+  </div>
+  <form class="J_ajaxForms" name="myform" id="myform" action="{:U('Category/add')}" method="post">
+    <div class="J_tabs_contents">
+      <div>
+        <div class="h_a">基本属性</div>
+        <div class="table_full">
+          <table width="100%" class="table_form ">
+            <tr>
+              <th  width="200">请选择栏目模型：</th>
+              <td>
+              	<span class="must_red">*</span><select name="model_mid" id="model_mid">
+                  <option value='' >请选择栏目模型</option>
+                  <volist name='model' id='value'>
+                  	<option value="{$value.mid}" <if condition='isset($parent["model_mid"]) && $parent["model_mid"] eq $value["mid"]'> selected='selected' </if> >{$value.remark}</option>  
+              	   </volist>             
+                 </select></td>
+            </tr>
+             <tr>
+              <th  width="200">请选择栏目类型：</th>
+              <td>
+                <select name="type_typeid" id="type_typeid">
+                  <option value='0' >请选择栏目类型</option>
+                  <volist name='type' id='value'>
+                    <option value="{$value.typeid}"  <if condition='isset($parent["type_typeid"]) && $parent["type_typeid"] eq $value["typeid"]'> selected='selected' </if>>{$value.typename}</option>  
+                   </volist>             
+                 </select></td>
+            </tr>
+            <tr>
+              <th >上级栏目：</th>
+              <td><select name="pid" id="pid">
+                  <option value='0'>≡ 作为一级栏目 ≡</option>
+                   <volist name='category' id='value'>
+                  	<option value="{$value.cid}" <if condition='isset($parent["cid"]) && $parent["cid"] eq $value["cid"]'> selected='selected' </if>>{$value._name}</option>  
+              	   </volist>     
+                </select></td>
+            </tr>
+           
+            
+
+          
+            <tr id="normal_add">
+              <th>栏目名称：</th>
+              <td><span class="must_red">*</span><input type="text" name="cname" id="cname" class="input" value=""></td>
+            </tr>
+            <if condition='C("cfg_language_en")'>
+            <tr id="normal_add">
+              <th>(英)栏目名称：</th>
+              <td><input type="text" name="cname_en" id="cname_en" class="input" value=""></td>
+            </tr>
+            </if>
+           
+            <tr>
+              <th>栏目缩略图：</th>
+              <td>
+              <input type="text" name="pic" id="pic" value="" size="50" class="input"  ondblclick="image_priview(this.value);"/> 
+              <input type="button" class="button" onclick="javascript:flashupload('image_images', '附件上传','pic',submit_images,'{$Think.const.CONTROLLER_NAME}',1,1,'{$Think.Config.cfg_image}')" value="上传图片" /><span class="gray"> 双击可以查看图片！</span>
+              </td>
+            </tr>
+            <if condition='C("cfg_language_en")'>
+             <tr>
+              <th>(英)栏目缩略图：</th>
+              <td>
+              <input type="text" name="pic_en" id="pic_en" value="" size="50" class="input"  ondblclick="image_priview(this.value);"/> 
+              <input type="button" class="button" onclick="javascript:flashupload('image_images', '附件上传','pic_en',submit_images,'{$Think.const.CONTROLLER_NAME}',1,1,'{$Think.Config.cfg_image}')" value="上传图片" /><span class="gray"> 双击可以查看图片！</span>
+              </td>
+            </tr>
+          </if>
+           
+            <tr>
+              <th ><strong>META Keywords(栏目关键词)</strong><br/>
+                关键字中间用半角逗号隔开</th>
+              <td><textarea name='keywords' id='keywords' style="width:90%;height:80px"></textarea></td>
+            </tr>
+
+            <if condition='C("cfg_language_en")'>
+            <tr>
+              <th ><strong>(英)META Keywords(栏目关键词)</strong><br/>
+                关键字中间用半角逗号隔开</th>
+              <td><textarea name='keywords_en' id='keywords_en' style="width:90%;height:80px"></textarea></td>
+            </tr>
+            </if>
+
+            <tr>
+              <th ><strong>META Description(栏目描述)</strong><br/>
+                针对搜索引擎设置的网页描述</th>
+              <td><textarea name='description' id='description' style="width:90%;height:80px"></textarea></td>
+            </tr>
+            <if condition='C("cfg_language_en")'>
+            <tr>
+              <th ><strong>(英)META Description(栏目描述)</strong><br/>
+                针对搜索引擎设置的网页描述</th>
+              <td><textarea name='description_en' id='description_en' style="width:90%;height:80px"></textarea></td>
+            </tr>
+            </if>
+            <tr>
+              <th>显示排序：</th>
+              <td><input type="text" name="sort" id="sort" class="input" value="100"></td>
+            </tr>
+            <tr>
+              <th >是显示：</th>
+              <td>
+              	<label>
+                      <input type='radio' name='is_show' value='1' <if condition='!isset($parent["is_show"]) || $parent["is_show"] '> checked='checked'</if>>
+                      <span>是</span></label>
+              &nbsp;
+              <label>
+                      <input type='radio' name='is_show' value='0'  <if condition='isset($parent["is_show"]) && !$parent["is_show"] '> checked='checked'</if>>
+                      <span>不显示</span></label>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      <div style="display:none">
+        <div class="h_a">高级属性</div>
+        <div class="table_full">
+          <table width="100%" class="table_form ">
+            
+            <tr >
+              <th width="200">每页记录数：</th>
+              <td><input type="text" name="page" id="page" class="input" value="<if condition='isset($parent["page"])' >{$parent.page}<else />20</if>" ></td>
+            </tr>
+            <tr>
+              <th>栏目类型：</th>
+              <td>
+              	<label>
+              		<input type="radio" name="cat_type" value="1" <if condition='isset($parent["cat_type"]) && $parent["cat_type"] eq 1 '> checked='checked'<else />checked='checked'</if>> <span>普通</span>
+              	</label>&nbsp;
+              	<label>
+              		<input type="radio" name="cat_type" value="2" <if condition='isset($parent["cat_type"]) && $parent["cat_type"] eq 2 '> checked='checked'</if>> <span>封面</span>
+              	</label>&nbsp;
+              	<label>
+              		<input type="radio" name="cat_type" value="3" <if condition='isset($parent["cat_type"]) && $parent["cat_type"] eq 3 '> checked='checked'</if>> <span>跳转</span>
+              	</label>&nbsp;
+              	<label>
+              		<input type="radio" name="cat_type" value="4" <if condition='isset($parent["cat_type"]) && $parent["cat_type"] eq 4 '> checked='checked'</if>> <span>单页</span>
+              	</label>
+              </td>
+            </tr>
+            <tr>
+              <th >跳转地址：</th>
+              <td><input type="text" name="go_url" id="go_url" class="input" style="width:90%"></td>
+            </tr>
+            <tr>
+              <th>是否跳转到子栏目：</th>
+              <td>
+              	<label>
+              		<input type="radio" name="go_child" value="0" <if condition='isset($parent["go_child"]) && !$parent["go_child"]'> checked='checked'<else />checked='checked'</if>> <span>否</span>
+              	</label>&nbsp;
+              	<label>
+              		<input type="radio" name="go_child" value="1" <if condition='isset($parent["go_child"]) && $parent["go_child"] '> checked='checked'</if>> <span>是</span>
+              	</label>
+              	
+              </td>
+            </tr>   
+          	<tr>
+              <th>打开方式：</th>
+              <td>
+              	<label>
+              		<input type="radio" name="target" value="1" checked="checked"> <span>当前窗口</span>
+              	</label>&nbsp;
+              	<label>
+              		<input type="radio" name="target" value="2"> <span>新窗口</span>
+              	</label>
+              	
+              </td>
+            </tr>
+
+            <tr>
+              <th >封面模板：</th>
+              <td><input type="text" name="default_tpl" id="default_tpl" class="input" size='50' value="<if condition='isset($parent["default_tpl"])' >{$parent.default_tpl}<else />default</if>"></td>
+            </tr>
+            <tr>
+              <th >列表模板：</th>
+              <td><input type="text" name="list_tpl" id="list_tpl" class="input" size='50' value="<if condition='isset($parent["list_tpl"])' >{$parent.list_tpl}<else />lists</if>"></td>
+            </tr>
+            <tr>
+              <th >详细页模板：</th>
+              <td><input type="text" name="view_tpl" id="view_tpl" class="input" size='50' value="<if condition='isset($parent["view_tpl"])' >{$parent.view_tpl}<else />view</if>"></td>
+            </tr>
+            <tr>
+              <th >控制器：</th>
+              <td><span class="must_red">*</span><input type="text" name="remark" id="remark" class="input" size='50' value="<if condition='isset($parent["remark"])' >{$parent.remark}<else />Index</if>"></td>
+            </tr>
+            <tr>
+              <th >自定义文件：</th>
+              <td><input type="text" name="file_url" id="file_url" class="input" size='50'></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+      
+      </div>
+ 
+    <div class="btn_wrap">
+      <div class="btn_wrap_pd">
+        <button class="btn btn_submit mr10 " type="submit">提交</button>
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/mod.content_addtop.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/mod.category.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+  <div class="nav">
+    <ul class="cc">
+        <li class="current"><a href="javascript:;">模型管理</a></li>
+        <li ><a href="{:U('Model/add')}">创建新模型</a></li>
+         <li ><a href="{:U('Model/update_cache')}">更新模型缓存</a></li>
+      </ul>
+  </div>
+  <div class="table_list">
+  <table width="100%" cellspacing="0" >
+    <thead>
+      <tr>
+        <td width="50" align="left">ModelID</td>
+        <td width="100"  align="left">数据表</td>
+        <td  align="center">模型名称</td>
+        <td width="230" align="center">管理操作</td>
+      </tr>
+    </thead>
+    <tbody>
+    <volist name='data' id='value'>
+    <tr>
+    	
+        <td align='center'>{$value.mid}</td>
+        <td align='left'>{$value.name}</td>
+        <td align='center'>{$value.remark}</td>
+        <td align='center'>
+        <a href="{:U('ModelField/index',array('mid'=>$value["mid"]))}">字段管理</a>  |<a href="{:U('Model/edit',array('mid'=>$value["mid"]))}">修改</a> |  <a class="J_ajax_del" href="{:U('Model/del',array('mid'=>$value["mid"]))}">删除</a></td>
+      </tr>
+      </volist>
+     </tbody>
+  </table>
+  </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+</body>
+</html>

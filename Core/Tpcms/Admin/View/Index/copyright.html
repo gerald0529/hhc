@@ -1,0 +1,36 @@
+<include file='Public:head' />
+<body>
+<div class="wrap">
+  <div id="home_toptip"></div>
+  <h2 class="h_a">系统信息</h2>
+  <div class="home_info">
+    <ul>
+      <?php $i=1; ?>
+    	<foreach name='info' item='value'>
+        <li <if condition='$i%2 eq 0'>style='background:#fff;font-weight:800'</if>>
+	     		<em>{$key}</em>
+	     		<span >{$value}</span>
+	     	</li>
+       <?php $i++; ?>
+  		</foreach>
+     </ul>
+  </div>
+  <h2 class="h_a">开发团队</h2>
+  <div class="home_info" id="home_devteam">
+    <ul>
+      <li>
+        <em>版权所有</em> 
+        <span><a href="http://www.0755com.net/" target="_blank">http://www.huashangshidai.com/</a></span>
+      </li>
+      <li style='background:#fff;font-weight:800'>
+        <em>负责人</em> 
+        <span>深圳市华商时代网络股份有限公司</span>
+      </li>
+     
+    </ul>
+  </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+<script type="text/javascript" src="__ORG__/artDialog/artDialog.js"></script>
+</body>
+</html>

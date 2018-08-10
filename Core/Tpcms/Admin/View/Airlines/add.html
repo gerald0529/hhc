@@ -1,0 +1,96 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+	<div class="nav">
+		<ul class="cc">
+		      <li ><a href="{:U('index')}">客服列表</a></li>
+		      <li  class="current"><a href="">添加客服</a></li>
+    	</ul>
+	</div>
+	<div class="h_a">添加客服</div>
+	<form action="{:U('Airlines/add')}" method="post" class="J_ajaxForms"  name="myform" id="myform">
+		<div class="table_full">
+			<table width="100%"  class="table_form" >
+
+				<tr>
+					<th width="120">客服类型：</th>
+					<td class="y-bg">
+						<select name="type" id="type">
+							<option value="">请选择客服类型</option>
+							<option value="qq">QQ客服</option>
+							<option value="msn">MSN客服</option>
+							<option value="skype">Skype客服</option>
+							<option value="email">邮箱客服</option>
+							<option value="wangwang">旺旺客服</option>
+							<option value="alibaba">阿里巴巴</option>
+						</select>
+					</td>
+				</tr>
+
+				<tr>
+					<th width="120">客服账号：</th>
+					<td class="y-bg">
+						<span class="must_red">*</span><input type="text" class="input" name="account" id="account" size='50' value="" />&nbsp;例如：764366866
+					</td>
+				</tr>
+
+				<tr>
+					<th width="120">客服名称：</th>
+					<td class="y-bg">
+						<span class="must_red">*</span><input type="text" class="input" name="name" id="name" size='50' value="" />&nbsp;例如：张小姐
+					</td>
+				</tr>
+
+
+				<if condition='C("cfg_language_en")'>
+				<tr>
+					<th width="120">(英)客服名称：</th>
+					<td class="y-bg">
+						<input type="text" class="input" name="name_en" id="name_en" size='50' value="" />
+					</td>
+				</tr>
+				</if>
+
+				<tr>
+					<th width="120">排序：</th>
+					<td class="y-bg">
+						<span class="must_red">*</span><input type="text" class="input" style="width:50px;" name="sort" id="sort" size='50' value="100" />
+					</td>
+				</tr>
+
+
+			<!-- 	<tr>
+					<th width="120">排序：</th>
+					<td class="y-bg">
+						<input type="text" class="input" name="sort" id="sort" value="100" />
+					</td>
+				</tr>
+				<tr>
+					<th width="120">状态：</th>
+					<td class="y-bg">
+					<label >
+						<input type="radio" name='verifystate' value="1"> <span>未审核</span>
+					</label>
+					<label >
+						<input type="radio" name='verifystate' value="2" checked="checked"> <span>审核通过</span>
+					</label>
+					</td>
+				</tr> -->
+
+				
+				
+			</table>
+		</div>
+		<div class="">
+			<div class="btn_wrap_pd">
+			
+				<button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit">添加</button>
+
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/mod.content_addtop.js"></script>
+</body>
+</html>

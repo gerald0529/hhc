@@ -1,0 +1,84 @@
+<!DOCTYPE>
+<html>
+<head>
+<meta charset="UTF-8" />
+<title>系统后台 - Tpcms内容管理系统 - by Tpcms</title>
+<link href="__PUBLIC__/css/admin_layout.css?v=" rel="stylesheet" />
+<link href="__ORG__/artDialog/skins/default.css" rel="stylesheet" />
+<link href='__PUBLIC__/css/mod.index.css'  rel="stylesheet" />
+<script>
+    var menu = {$menu};
+
+    if (window.top !== window.self) 
+    {
+        document.write = '';
+        window.top.location.href = window.self.location.href;
+        setTimeout(function () {
+            document.body.innerHTML = '';
+        }, 0);
+    }
+</script>
+</head>
+<body>
+<div class="wrap">
+  <noscript>
+  <h1 class="noscript">您已禁用脚本，这样会导致页面不可用，请启用脚本后刷新页面</h1>
+  </noscript>
+  <table width="100%" height="100%" style="table-layout:fixed;">
+    <tr class="head">
+      <th><a href="__APP__/Admin" class="logo" >管理中心</a></th>
+      <td><div class="nav"> 
+          <!-- 菜单异步获取，采用json格式，由js处理菜单展示结构 -->
+          <ul id="J_B_main_block">
+          </ul>
+        </div>
+        <div class="login_info">
+        <span class="mr10">{$group}： {$Think.session.nick_name}[{$Think.session.user_name}]</span>
+        <a href="{:U('Login/out')}" class="mr10">[注销]</a>
+        <a href="__ROOT__/" class="home" target="_blank">前台首页</a>
+        <a href="javascript:;;" id="deletecache" class="home"  style="color:#FFF">缓存更新</a></div></td>
+    </tr>
+    <tr class="tab" >
+        <td  style="overflow:hidden;border-right: 2px solid #CCC;" ></td>
+        <!--  <th> 
+        <div class="search">
+            <input size="15" placeholder="Hi，Tpcms！" id="J_search_keyword" type="text">
+            <button type="button" name="keyword" id="J_search" value="" data-url="index.php?g=Admin&m=Index&a=public_find">搜索</button>
+            </div>
+        </th> -->
+        <td ><div id="B_tabA" class="tabA"> <a href="" tabindex="-1" class="tabA_pre" id="J_prev" title="上一页">上一页</a> <a href="" tabindex="-1" class="tabA_next" id="J_next" title="下一页">下一页</a>
+          <div style="margin:0 25px;min-height:1px;">
+            <div style="position:relative;height:30px;width:100%;overflow:hidden;">
+              <ul id="B_history" style="white-space:nowrap;position:absolute;left:0;top:0;">
+                <li class="current" data-id="default" tabindex="0"><span><a>后台首页</a></span></li>
+              </ul>
+            </div>
+          </div>
+        </div></td>
+    </tr>
+    <tr class="content">
+      <th  style="overflow:hidden;border-right: 2px solid #CCC;" > 
+        <div id="B_menunav">
+          <div class="menubar">
+            <dl id="B_menubar">
+              <dt class="disabled"></dt>
+            </dl>
+          </div>
+          <div id="menu_next" class="menuNext" style="display:none;"> <a href="" class="pre" title="顶部超出，点击向下滚动">向下滚动</a> <a href="" class="next" title="高度超出，点击向上滚动">向上滚动</a> </div>
+        </div>
+      </th>
+      <td id="B_frame" style="height:100%;">
+        <div class="options"> <a href="" class="refresh" id="J_refresh" title="刷新">刷新</a> <a href="" id="J_fullScreen" class="full_screen" title="全屏">全屏</a> </div>
+        <div class="loading" id="loading">加载中...</div>
+        <iframe id="iframe_default" src="{:U('Index/copyright')}" style="height: 100%; width: 100%;display:none;" data-id="default" frameborder="0" scrolling="auto"></iframe></td>
+    </tr>
+  </table>
+</div>
+
+<jsconst />
+<script src="__ORG__/wind.js"></script>
+<script src="__ORG__/jquery.js"></script>
+<script src="__PUBLIC__/js/mod.common.js"></script>
+<script src='__PUBLIC__/js/mod.index.js'></script>
+</body>
+</html>

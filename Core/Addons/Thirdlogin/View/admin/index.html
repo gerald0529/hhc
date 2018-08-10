@@ -1,0 +1,51 @@
+<div class="wrap J_check_wrap">
+  <div class="nav">
+    <ul class="cc">
+      <li class="current"><a href="javascript:;">第三方登录</a></li>
+ 
+      </ul>
+  </div>
+
+  
+  <form class="J_ajaxForm" action="" method="post"> 
+  <div class="table_list">
+  <table width="100%" cellspacing="0" >
+    <thead>
+      <tr>
+        
+        <td width="50" align="left">id</td>
+        <td width="80">名称</td>
+        <td >说明</td>
+        <td width="80">状态</td>
+        <td width="230" align="center">管理操作</td>
+      </tr>
+    </thead>
+    <tbody>
+    <if condition='$data'>
+      <volist name='data' id='value'>
+      <tr>
+          <td>{$value.id}</td>
+          <td>{$value.name}</td>
+          <td>{$value.description}</td>
+          <td><if condition='$value["verifystate"] eq 1'>禁用<else/>启用</if></td>
+          <td align='center'>
+         
+          <a href="{:U('edit',array('name'=>'Thirdlogin','id'=>$value['id']))}">设置</a></td>
+        </tr>
+        </volist>
+      <else />
+       <tr>
+        <td colspan="7">没有找到符合条件的记录</td>
+       </tr>
+      </if>
+     
+     </tbody>
+
+  </table>
+
+   <div class="p10"><div class="pages"> {$page} </div> </div>
+  </div>
+
+    
+</form>
+</div>

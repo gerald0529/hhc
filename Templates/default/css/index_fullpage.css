@@ -1,0 +1,281 @@
+.header {
+	width: 100%;
+	height: 0.8rem;
+	background: rgba(0, 0, 0, 0.3);
+	position: fixed;
+	left: 0;
+	top: 0;
+	z-index: 1000;
+}
+
+#menu {
+	margin: 0;
+	padding: 0;
+	position: fixed;
+	width: 12rem;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	left: 50%;
+	margin-left: -6rem;
+	top: 0px;
+	list-style-type: none;
+	z-index: 70;
+}
+
+.logo {
+	float: left;
+	width: 0.64rem;
+	height: 0.58rem;
+	margin: 0.12rem 0.6rem 0 0;
+}
+
+.zh_en {
+	width: 0.5rem;
+	height: 0.24rem;
+	margin-top: 0.27rem;
+}
+
+#menu li {
+	float: left;
+	font-size: 0.18rem;
+	margin: 0 0.15rem;
+}
+
+#menu a {
+	float: left;
+	display: block;
+	width: 100%;
+	height: 0.8rem;
+	line-height: 0.8rem;
+	color: #fff;
+	text-decoration: none;
+}
+
+#menu .active a {
+	color: #F09400;
+}
+
+.section {
+	text-align: center;
+	font: 0.5rem "Microsoft Yahei";
+	color: #fff;
+	min-width: 1200px;
+}
+
+.section p {
+	font: 0.3rem "Microsoft Yahei";
+}
+
+
+/*page1*/
+
+.page1,
+.page2,
+.page4 {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+#particles-js {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: 990;
+	top: 0px;
+	left: 0px;
+}
+
+.home_bg {
+	width: 100%;
+	height: 100#;
+	position: absolute;
+	top: 0;
+	left: 0;
+	/*left: 50%;*/
+	/*top: 50%;
+	margin-left: -9.6rem;
+	margin-top: -4.86rem;*/
+	z-index: 988;
+}
+
+.home_con {
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	width: 950px;
+	margin-left: -475px;
+	height: 244px;
+	margin-top: -122.5px;
+	z-index: 999;
+}
+
+.home_con img {
+	margin: 0 auto;
+}
+
+.home_con img:nth-of-type(1) {
+	margin-bottom: 0.86rem;
+}
+
+
+/*page2*/
+
+.page2_bg {
+	position: absolute;
+	top: 0px;
+	left: 0%;
+	width: 100%;
+	height: 100%;
+}
+
+.page2_con {
+	position: absolute;
+	top: 80px;
+	left: 50%;
+	width: 12rem;
+	margin-left: -6rem;
+
+}
+
+.Pic_List_title {
+	width: 100%;
+	font-size: 0.4rem;
+	font-weight: 100;
+	margin-top: 0.6rem;
+	margin-bottom: 0.6rem;
+
+}
+
+.JieShao_Cont {
+	float: left;
+	width: 6rem;
+	height: 6rem;
+	font-size: 0.24rem;
+	line-height: 0.4rem;
+	/*text-indent: 2em;*/
+}
+
+.JieShao_a {
+	width: 6rem;
+	/*text-indent: 2em;*/
+	/*margin-top: 1.4rem;*/
+}
+
+.JieShao_a li {
+	float: left;
+	margin: 0 0.6rem 0.4rem 0;
+}
+
+.JieShao_a li a {
+	display: block;
+	width: 2.22rem;
+	height: 0.64rem;
+	line-height: 0.64rem;
+	text-align: center;
+	background: #7f7366;
+}
+
+.lightbox {
+	float: right;
+}
+
+
+/*page3*/
+
+.slide img {
+	width: 100%;
+	height: 100%;
+}
+
+.page4_con {
+	position: absolute;
+	top: 0px;
+	left: 0px;
+	width: 100%;
+	height: 100%;
+}
+
+.page4_title {
+	width: 100%;
+	text-align: center;
+	font-size: 0.4rem;
+	margin: 0.94rem auto 0.6rem;
+}
+
+.lightbox_table {
+	width: 10rem;
+	height: 2.5rem;
+	margin: 0 auto;
+}
+
+.lightbox_table li {
+	float: left;
+}
+
+.lightbox_table li img {
+	width: 2.4rem;
+	height: 2.42rem;
+}
+
+.path {
+	position: relative;
+	width: 100%;
+	font-size: 0.24rem;
+}
+
+.path_bg {
+	width: 100%;
+}
+
+.technology {
+	position: absolute;
+}
+
+.technology1 {
+	top: 40%;
+	left: 20%;
+}
+
+.technology2 {
+	top: 55%;
+	left: 28%;
+}
+
+.technology3 {
+	top: 95%;
+	left: 35%;
+}
+
+.technolog4 {
+	top: 81%;
+	left: 50%;
+}
+
+.technology5 {
+	top: 63%;
+	left: 61%;
+}
+
+.technology6 {
+	top: 48%;
+	left: 69%;
+}
+
+
+/*page6*/
+
+.page6_ul {
+	width: 9rem;
+	margin: 0 auto;
+}
+
+.page6_ul li {
+	float: left;
+	margin-right: 0.64rem;
+}
+
+.page6_ul li img {
+	width: 0.56rem;
+	height: 0.55rem;
+}

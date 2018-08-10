@@ -1,0 +1,138 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+  <div class="nav">
+    <ul class="cc">
+    <li class="current"><a href="javascript:;"><if condition='$_GET["role"] eq 2'>会员<else />管理员</if>列表</a></li>
+     
+    </ul>
+  </div>
+  <div class="mb10">
+  <a href="{:U('User/add',array('role'=>$_GET['role'],'grade_gid'=>$_GET['grade_gid']))}"  class="btn" title="新增会员"><span class="add"></span>新增<if condition='$_GET["role"] eq 2'>会员<else />管理员</if></a>
+  </div>
+  <div class="h_a">搜索</div>
+  <form method="get" action="{:U('index')}">
+ 
+    <div class="search_type cc mb10">
+      <div class="mb10"> 
+        <span class="mr20">时间：
+        <input type="text" name="start_time" class="input length_2 J_date" value="{$Think.get.start_time}" style="width:80px;" placeholder="选择时间">-<input type="text" class="input length_2 J_date" name="end_time" value="{$Think.get.end_time}" style="width:80px;" placeholder="选择时间">
+        <select class="select_2" name="is_lock" style="width:100px;">
+          <option value='3' <if condition='3 eq $_GET["is_lock"]'> selected='selected' </if>>状态</option>
+		      <option value='0' <if condition='0 eq $_GET["is_lock"]'> selected='selected' </if>>正常</option>
+          <option value='1' <if condition='1 eq $_GET["is_lock"]'> selected='selected' </if>>锁定</option>
+        </select>
+        <if condition='$_GET["role"] eq 2'>
+           <select class="select_2" name="grade_gid" style="width:100px;">
+            <option value='0' >会员等级</option>
+            <foreach name='grade' item='v'>
+            <option value='{$v.gid}' <if condition='$v["gid"] eq $_GET["grade_gid"]'> selected='selected' </if> >{$v.gname}</option>
+            </foreach>
+           
+          </select>
+        <else />
+           <select name="group_id" class="hd-w100">
+            <option value="0">全部角色</option>
+            <volist name='authGroup' id='v'>
+              <option value="{$v.id}" <if condition ='$_GET["group_id"] eq $v["id"]'> selected='selected'</if>>{$v.title}</option>
+            </volist>
+          </select>
+        </if>
+        <select class="select_2" name="keytype" style="width:70px;">
+          <option value='username'  <if condition='isset($_GET["keytype"]) && $_GET["keytype"] eq "username"'> selected='selected'</if>>用户名</option>
+          <option value='nickname'  <if condition='isset($_GET["keytype"]) && $_GET["keytype"] eq "nickname"'> selected='selected'</if>>昵称</option>
+          <option value='email'  <if condition='isset($_GET["keytype"]) && $_GET["keytype"] eq "email"'> selected='selected'</if>>邮箱</option>
+        </select>
+        关键字：
+        <input type="text" class="input length_2" name="keyword" style="width:200px;" value="{$Think.get.keyword}" placeholder="请输入关键字...">
+          
+          <input type="hidden" value="{$Think.get.role}" name="role">
+          <button class="btn" type="submit">搜索</button>
+        </span>
+      </div>
+    </div>
+  </form>
+  <form class="J_ajaxForm" action="" method="post">
+    <div class="table_list">
+      <table width="100%">
+	        <colgroup>
+	        <col width="16">
+	        <col width="50">
+	        <col width="">
+	        <col width="100">
+          <if condition='$_GET["role"] eq 2'>
+	        <col width="150">
+          </if>
+	        <col width="150">
+
+	        <col width="60">
+	        <col width="150">
+	        <col width="100">
+	        </colgroup>
+	        <thead>
+	        <tr>
+	            <td><label><input type="checkbox" class="J_check_all" data-direction="x" data-checklist="J_check_x"></label></td>
+	          
+	            <td align="left">ID</td>
+	            <td>用户名</td>
+              <td>昵称</td>
+              <if condition='$_GET["role"] eq 2'>
+	            <td>等级</td>
+              </if>
+	            <td>邮箱</td>
+	            <td>状态</td>
+	            <td align="center"><span>注册时间</span></td>
+	            <td align="center">管理操作</td>
+	          </tr>
+	        </thead>
+          <if condition='$data'>
+          <volist name='data' id='value'>
+	        <tr>
+	            <td>
+	           	 	<input type="checkbox" class="J_check" data-yid="J_check_y" data-xid="J_check_x" name="uids[{$value.uid}]" value="{$value.uid}"  <if condition='$value["uid"] eq 1'>disabled='disabled' </if>>
+	            </td>
+	            <td align="left">{$value.uid}</td>
+	            <td>{$value.username}</td>
+              <td>{$value.nickname}</td>
+              <if condition='$_GET["role"] eq 2'>
+	            <td>{$value.gname}</td>
+              </if>
+	            <td>{$value.email}</td>
+
+	            <td><if condition='$value["is_lock"]'>已锁定<else />正常</if></td>
+	            <td align="center">{$value.addtime|format_date}</td>
+	            <td align="center">
+	            	<a href="{:U('User/edit',array('uid'=>$value["uid"],'role'=>$value['role']))}" >修改</a> 
+	            	|
+                <if condition='$value["uid"] eq 1'> 
+                  <font color="#BEBEBE"> 删除</font>
+                <else />
+	            	  <a href="{:U('User/del',array('uid'=>$value["uid"],'role'=>$value['role']))}" class="J_ajax_del" >删除</a>
+                </if>
+	            </td>
+	        </tr>
+        </volist>
+        <else/>
+        <tr><td colspan="9">没有找到符合条件的记录</td></tr>
+        </if>
+	        
+        </table>
+      	<div class="p10"><div class="pages"> {$page} </div> </div>
+     
+    </div>
+    <div class="btn_wrap">
+      <div class="btn_wrap_pd">
+        <label class="mr20"><input type="checkbox" class="J_check_all" data-direction="y" data-checklist="J_check_y">全选</label>                
+       
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('check')}">锁定</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('cancel_check')}">解锁</button>
+        <button class="btn J_ajax_submit_btn" type="submit" data-action="{:U('batch_delete')}">删除</button>
+      	
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+
+</body>
+</html>

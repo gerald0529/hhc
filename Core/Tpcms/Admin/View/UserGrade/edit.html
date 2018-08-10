@@ -1,0 +1,33 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+	<div class="nav">
+    <ul class="cc">
+        <li ><a href="{:U('UserGrade/index')}">会员等级管理</a></li>
+        <li class="current"><a href="javascript:;">添加会员等级</a></li>
+      </ul>
+	</div>
+    <div class="h_a">会员等级属性</div>
+  	<form action="{:U('UserGrade/edit')}" method="post" class="J_ajaxForm" >
+    <div class="table_full">
+      <table width="100%"  class="table_form">
+        <tr>
+          <th width="120">会员等级名称：</th>
+          <td class="y-bg"><span class="must_red">*</span><input type="text" class="input" name="gname" id="gname" size="30" value="{$data.gname}" /></td>
+        </tr>
+      
+       
+      </table>
+    </div>
+    <div class="">
+      <div class="btn_wrap_pd">
+      	<input type="hidden" name="gid" value="{$data.gid}">
+        <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit">添加</button>
+     
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+</body>
+</html>

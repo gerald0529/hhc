@@ -1,0 +1,43 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+  <div class="nav">
+    <ul class="cc">
+        <li class="current"><a href="javascript:;">栏目类型管理</a></li>
+        <li ><a href="{:U('Type/add')}">添加栏目类型</a></li>
+         <li ><a href="{:U('Type/update_cache')}">更新栏目类型缓存</a></li>
+      </ul>
+</div>
+  <div class="table_list">
+  <table width="100%" cellspacing="0" >
+    <thead>
+      <tr>
+        <td width="50" align="center">TypeId</td>
+        <td  align="left">类型名称</td>
+        <td width="230" align="center">管理操作</td>
+      </tr>
+    </thead>
+    <tbody>
+    <if condition='$data'>
+    <volist name='data' id='value'>
+     <tr>
+
+        <td align='center'>{$value.typeid}</td>
+        <td align='left'>{$value.typename}</td>
+        
+        <td align='center'>
+        <a href="{:U('Attr/index',array('typeid'=>$value["typeid"]))}">属性管理</a>  |<a href="{:U('Type/edit',array('typeid'=>$value["typeid"]))}">修改</a> |  <a class="J_ajax_del" href="{:U('Type/del',array('typeid'=>$value["typeid"]))}">删除</a></td>
+      </tr>
+      </volist>
+    <else />
+      <tr>
+        <td colspan="3">没有找到符合条件的记录</td>
+      </tr>
+    </if>
+     </tbody>
+  </table>
+  </div>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+</body>
+</html>

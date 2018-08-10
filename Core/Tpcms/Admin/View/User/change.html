@@ -1,0 +1,44 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+	<div class="nav">
+    <ul class="cc">
+      	
+        <li class="current"><a href="javascript:;">修改密码</a></li>
+      </ul>
+	</div>
+    <div class="h_a">修改密码属性</div>
+  	<form action="{:U('User/change')}" method="post" class="J_ajaxForm" >
+    <div class="table_full">
+      <table width="100%"  class="table_form">
+        <tr>
+          <th width="120">用户名：</th>
+          <td class="y-bg">{$Think.session.user_name}</td>
+        </tr>
+        <tr>
+          <th>原密码：</th>
+          <td class="y-bg"><span class="must_red">*</span><input type="password" class="input" name="oldpassword" id="oldpassword" size="30" value="{$data.nickname}" /></td>
+        </tr>
+
+        <tr>
+          <th>新密码：</th>
+          <td class="y-bg"><span class="must_red">*</span><input type="password" class="input" name="password" id="password" size="30" value="{$data.email}" /></td>
+        </tr>
+        <tr>
+          <th>确认密码：</th>
+          <td class="y-bg"><span class="must_red">*</span><input type="password" class="input" name="passwords" id="passwords" size="30" value="{$data.email}" /></td>
+        </tr>
+       
+      </table>
+    </div>
+    <div class="">
+      <div class="btn_wrap_pd">
+       
+        <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit">修改</button>
+      </div>
+    </div>
+  </form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+</body>
+</html>

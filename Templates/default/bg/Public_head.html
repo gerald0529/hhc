@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>{$cms.page_title}</title>
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/css/reset.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/css/animation.css" />
+    <link rel="stylesheet" href="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/css/jquery.fullPage.css">
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/css/index_fullpage.css" />
+    <link rel="stylesheet" type="text/css" href="__PUBLIC__/{$Think.Config.DEFAULT_THEME}/css/demo.css" />
+
+</head>
+
+<body style="min-width: 1200px;">
+<div class="header">
+    <ul id="menu">
+        <img src="__ROOT__/{$Think.Config.cfg_logo}" alt="" class="logo" />
+        <li data-menuanchor="page1" class="active">
+            <a href="#page1">首页</a>
+        </li>
+
+        <channel type='top' >
+        <li data-menuanchor="{$field.keywords}" >
+            <if condition="$field['cname_en'] neq 'news'">
+            <a href="/#{$field.keywords}" >
+                <else />
+                <a  href="{$field.url}" target="_blank">
+            </if>
+                {$field.cname}
+            </a>
+        </li>
+        </channel>
+
+        <li style="float: right;">
+            <a href="/?t=en">
+                <showad cid="16">
+                    <img src="{$field.pic}" class="zh_en" />
+                </showad>
+            </a>
+        </li>
+    </ul>
+</div>

@@ -1,0 +1,144 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+	<div class="nav">
+    <ul class="cc">
+       	<li><a href="{:U('User/index',array('role'=>$_GET['role']))}"><if condition='$_GET["role"] eq 2'>会员<else />管理员</if>列表</a></li>
+        <li class="current"><a href="javascript:;">新增<if condition='$_GET["role"] eq 2'>会员<else />管理员</if></a></li>
+      </ul>
+	</div>
+    <div class="h_a"><if condition='$_GET["role"] eq 2'>会员<else />管理员</if>属性</div>
+  	<form action="{:U('User/add')}" method="post" class="J_ajaxForms"  name="myform" id="myform" >
+    <div class="table_full">
+      <table width="100%"  class="table_form">
+      	<if condition='$_GET["role"] eq 2'>
+      	<tr>
+          <th width="120">会员等级：</th>
+          <td class="y-bg">
+          	<span class="must_red">*</span><select name="grade_gid" id="grade_gid">
+          		<option value="">请选择会员等级</option>
+          		<volist name='grade' id='v'>
+          			<option value = '{$v.gid}' <if condition='isset($_GET["grade_gid"]) && $_GET["grade_gid"] eq $v["gid"]'>selected='selected'</if>>{$v.gname}</option>
+          		</volist>
+          	</select>
+          </td>
+        </tr>
+        <else />
+        <tr>
+          <th width="120">角色：  </th>
+          <td class="y-bg">
+          	<table>
+             <tr>
+              <th class='hand' onclick='add_group(this)'>[+]</th>
+              <td>
+                 <select name="group_id[]" id="grade_gid">
+                  <option value="">请选择角色</option>
+     
+                 <volist name='authGroup' id='v'>
+                      <option value="{$v.id}" >{$v.title}</option> 
+                 </volist>
+                
+                </select>
+              </td>
+             </tr> 
+            </table>
+          </td>
+        </tr>
+   		</if>
+        <tr>
+          <th width="120">用户名称：</th>
+          <td class="y-bg"><span class="must_red">*</span><input type="text" class="input" name="username" id="username" size="30" value="" /></td>
+        </tr>
+        <tr>
+          <th width="120">用户昵称：</th>
+          <td class="y-bg"><span class="must_red">*</span><input type="text" class="input" name="nickname" id="nickname" size="30" value="" /></td>
+        </tr>
+         <tr>
+          <th width="120">邮箱：</th>
+          <td class="y-bg"><span class="must_red">*</span><input type="text" class="input" name="email" id="email" size="30" value="" /></td>
+        </tr>
+        <tr>
+          <th width="120">用户密码：</th>
+          <td class="y-bg"><span class="must_red">*</span><input type="password" class="input" name="password" id="password" size="30" value="" /></td>
+        </tr>
+        <tr>
+          <th width="120">用户确认密码：</th>
+          <td class="y-bg"><span class="must_red">*</span><input type="password" class="input" name="passwords" id="passwords" size="30" value="" /></td>
+        </tr>
+        <tr>
+          <th>状态：</th>
+          <td class="y-bg">
+          	<label>
+          		<input type="radio" name="is_lock" value="1"> 锁定
+          	</label>
+          	<label>
+          		<input type="radio" name="is_lock" value="0" checked="checked"> 正常
+          	</label>
+          </td>
+        </tr>
+       
+      </table>
+    </div>
+    <div class="">
+      <div class="btn_wrap_pd">
+      	<input type="hidden" name='role' value="{$Think.get.role}" />
+        <button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit">添加</button>
+     
+      </div>
+    </div>
+  </form>
+</div>
+<script>
+var userValidate={rules: {
+              "grade_gid":{
+          required:1
+        },
+        "username":{
+          required:1
+        },
+        "nickname":{
+          required:1
+        },
+        "email":{
+          required:1,
+          email:1,
+        },
+        "password":{
+          required:1
+        },
+        "passwords":{
+          required:1,
+          equalTo:'#password'
+          
+        },
+      },
+           
+        messages: {
+            "grade_gid":{
+          required:'请选择会员等级'
+        },
+        "username":{
+          required:"会员名称不能为空！"
+        },
+        "nickname":{
+          required:"会员昵称称不能为空！"
+        },
+        "email":{
+          required:"邮箱不能为空！",
+          email:'邮箱格式不对！'
+        },
+        "password":{
+          required:"密码不能为空！"
+        },
+        "passwords":{
+          required:"确认密码不能为空！",
+          equalTo:'两次密码不一致！'
+        },
+        
+      }};
+</script>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/mod.content_addtop.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/mod.user.js"></script>
+</body>
+</html>

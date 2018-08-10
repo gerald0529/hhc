@@ -1,0 +1,110 @@
+<include file='Public:head' />
+<body class="J_scroll_fixed">
+<div class="wrap J_check_wrap">
+	<div class="nav">
+		<ul class="cc">
+		      <li ><a href="{:U('index')}">碎片数据列表</a></li>
+		      <li  class="current"><a href="">编辑碎片数据</a></li>
+    	</ul>
+	</div>
+	<div class="h_a">碎片数据</div>
+	<form action="{:U('Debris/edit')}" method="post" class="J_ajaxForms"  name="myform" id="myform">
+		<div class="table_full">
+			<table width="100%"  class="table_form" >
+				<input type="hidden" name="id" value="{$data.id}" >
+				<tr>
+					<th width="120">标题名称：</th>
+					<td class="y-bg">
+						<span class="must_red">*</span><input type="text" class="input" value="{$data.title}" name="title" id="title" size='50' value="" />
+					</td>
+				</tr>
+
+
+				<if condition='C("cfg_language_en")'>
+				<tr>
+					<th width="120">(英)标题名称：</th>
+					<td class="y-bg">
+						<input type="text" class="input" name="title_en" id="title_en" value="{$data.title_en}" size='50' value="" />
+					</td>
+				</tr>
+				</if>
+
+				<tr>
+					<th width="120">图片：</th>
+					<td class="y-bg">
+						<input type="text" name="pic" id="pic" value="{$data.pic}" size="50" class="input"  ondblclick="image_priview(this.value);"/> 
+              			<input type="button" class="button" onclick="javascript:flashupload('image_images', '图片上传','pic',submit_images,'{$Think.const.CONTROLLER_NAME}',1,1,'{$Think.Config.cfg_image}')" value="上传图片" /><span class="gray"> 双击可以查看图片！</span>
+					</td>
+				</tr>
+
+				
+				<if condition='C("cfg_language_en")'>
+				<tr>
+					<th width="120">(英)图片：</th>
+					<td class="y-bg">
+						<input type="text" name="pic_en" id="pic_en" value="{$data.pic_en}" size="50" class="input"  ondblclick="image_priview(this.value);"/> 
+              			<input type="button" class="button" onclick="javascript:flashupload('image_images', '图片上传','pic_en',submit_images,'{$Think.const.CONTROLLER_NAME}',1,1,'{$Think.Config.cfg_image}')" value="上传图片" /><span class="gray"> 双击可以查看图片！</span>
+					</td>
+				</tr>
+				</if>
+
+				<tr>
+					<th width="120">详细内容：</th>
+					<td class="y-bg">
+						<!-- <textarea name='body' id='body' style="width:90%;height:80px"> -->
+						{$body}
+						<!-- </textarea> -->
+					</td>
+				</tr>
+
+				<if condition='C("cfg_language_en")'>
+				<tr>
+					<th width="120">(英)详细内容：</th>
+					<td class="y-bg">
+						<!-- <textarea name='body_en' id='body_en' style="width:90%;height:80px"> -->
+						{$body_en}
+						<!-- </textarea> -->
+					</td>
+				</tr>
+				</if>
+				
+				<style>
+					.ke-container,.ke-container-default{width:55%;}
+				</style>
+
+			<!-- 	<tr>
+					<th width="120">排序：</th>
+					<td class="y-bg">
+						<input type="text" class="input" name="sort" id="sort" value="100" />
+					</td>
+				</tr>
+				<tr>
+					<th width="120">状态：</th>
+					<td class="y-bg">
+					<label >
+						<input type="radio" name='verifystate' value="1"> <span>未审核</span>
+					</label>
+					<label >
+						<input type="radio" name='verifystate' value="2" checked="checked"> <span>审核通过</span>
+					</label>
+					</td>
+				</tr> -->
+
+				
+				
+			</table>
+		</div>
+		<div class="">
+			<div class="btn_wrap_pd">
+			
+				<button class="btn btn_submit mr10 J_ajax_submit_btn" type="submit">添加</button>
+
+			</div>
+		</div>
+	</form>
+</div>
+<script type="text/javascript" src="__PUBLIC__/js/mod.common.js"></script>
+<script type="text/javascript" src="__PUBLIC__/js/mod.content_addtop.js"></script>
+<script type="text/javascript" src='__PUBLIC__/js/mod.ad.js'></script>
+</body>
+</html>
